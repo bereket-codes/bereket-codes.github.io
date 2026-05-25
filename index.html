@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bereket Tadesse · CS Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f5f3f0 0%, #e8e2d9 100%);
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      margin: 0;
+    }
+
+    .profile-card {
+      max-width: 880px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.8rem;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 20, 30, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* ---- LEFT PANEL ---- */
+    .left-panel {
+      flex: 1 1 340px;
+      background: #0b1e2f;
+      background-image: radial-gradient(circle at 20% 30%, #1f3b4f 5%, #0a1925 90%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.8rem 2rem;
+      text-align: center;
+    }
+
+    .photo-frame {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, #d4b68a, #c2a27b);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+      margin-bottom: 1.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-frame:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 3px solid white;
+    }
+
+    .name-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+      color: white;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #cfc2a6;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .cs-badge {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 0.45rem 1.4rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0.5rem 0 1rem;
+      color: #e6d7b8;
+      border: 1px solid rgba(255,255,240,0.25);
+      display: inline-block;
+    }
+
+    .degree-details {
+      margin-top: 1.2rem;
+      background: rgba(255,255,255,0.08);
+      border-radius: 1.8rem;
+      padding: 1.5rem 1.2rem;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,200,0.18);
+    }
+
+    .degree-details h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #cfc2a6;
+      margin-bottom: 1rem;
+    }
+
+    .degree-line {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.05rem;
+      margin-bottom: 0.7rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      color: #f0e7db;
+    }
+
+    .degree-line i {
+      color: #dbb87c;
+      width: 1.4rem;
+      font-size: 1.1rem;
+    }
+
+    .university {
+      font-weight: 500;
+      color: #f5e7d3;
+    }
+
+    .year-gpa {
+      display: flex;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      color: #cdc0aa;
+      flex-wrap: wrap;
+    }
+
+    hr {
+      border-color: rgba(255,255,200,0.2);
+      margin: 1rem 0 0.8rem;
+    }
+
+    .focus-text {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      color: #ccbc9c;
+      line-height: 1.5;
+    }
+
+    /* ---- RIGHT PANEL ---- */
+    .right-panel {
+      flex: 1 1 400px;
+      background: #fafaf8;
+      padding: 2.8rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .greeting {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1e3b4a;
+      margin-bottom: 0.8rem;
+    }
+
+    .bio {
+      color: #5f6c7a;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .skill-tag {
+      background: #e8e0d5;
+      color: #2c3e4e;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      border: 1px solid #d4c8b6;
+    }
+
+    .github-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #1e3b4a;
+      background: linear-gradient(135deg, #1f3e4f, #0f2a36);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 40px;
+      transition: all 0.3s ease;
+      border: 1px solid #3c5a68;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .github-btn i {
+      font-size: 1.4rem;
+    }
+
+    .github-btn:hover {
+      background: linear-gradient(135deg, #2a4b5c, #17333f);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.3);
+    }
+
+    .github-handle {
+      color: #7a8a94;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #b0a89a;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media screen and (max-width: 700px) {
+      body {
+        padding: 1rem;
+      }
+      .profile-card {
+        flex-direction: column;
+        border-radius: 2rem;
+      }
+      .left-panel {
+        padding: 2rem 1.5rem;
+      }
+      .right-panel {
+        padding: 2rem 1.8rem;
+      }
+      .name-title {
+        font-size: 2.2rem;
+      }
+      .greeting {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+
+    <!-- LEFT SIDE: Photo, Name, Degree -->
+    <div class="left-panel">
+      <div class="photo-frame">
+        <img src="me.jpg" alt="Bereket Tadesse" class="profile-photo">
+      </div>
+
+      <div class="name-title">Bereket Tadesse</div>
+      <div class="tagline">Frontend Developer</div>
+      <div class="cs-badge"><i class="fas fa-laptop-code" style="margin-right: 6px;"></i>Computer Science</div>
+
+      <div class="degree-details">
+        <h3><i class="fas fa-graduation-cap"></i> B.Sc. in Computer Science</h3>
+        <div class="degree-line">
+          <i class="fas fa-university"></i>
+          <span class="university">Unity University</span>
+        </div>
+        <div class="degree-line">
+          <i class="fas fa-calendar-alt"></i>
+          <span>2022 – 2026</span>
+        </div>
+        <div class="year-gpa">
+          <span><i class="fas fa-star"></i> GPA: 3.0/4.0</span>
+          <span><i class="fas fa-code-branch"></i> Frontend</span>
+        </div>
+        <hr>
+        <div class="focus-text">
+          <i class="fas fa-lightbulb"></i> Web technologies, UI/UX design, and software development.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: Bio, Skills, GitHub Link -->
+    <div class="right-panel">
+      <div class="greeting">👋 Hello, I'm Bereket</div>
+      <div class="bio">
+        A fresh Computer Science graduate passionate about building clean, 
+        user-friendly web experiences. Currently exploring frontend development 
+        and looking for exciting opportunities to grow and create.
+      </div>
+
+      <div class="skills-row">
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">UI/UX</span>
+        <span class="skill-tag">Git</span>
+      </div>
+
+      <div class="github-section">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="github-btn">
+          <i class="fab fa-github"></i> View My GitHub
+        </a>
+        <span class="github-handle">@yourusername</span>
+      </div>
+
+      <div class="footer-note">
+        🚀 Open to collaborations &amp; new opportunities
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
