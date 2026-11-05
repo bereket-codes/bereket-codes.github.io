@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bereket Tadesse · Frontend Developer</title>
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +14,7 @@
             --muted: #6b6b6b;
             --accent: #c8a97e;
             --accent-dark: #b8925a;
-            --accent-glow: rgba(200, 169, 126, 0.3);
+            --accent-glow: rgba(200, 169, 126, 0.4);
             --surface: #ffffff;
             --border: #e8e3da;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -25,432 +22,323 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        /* Custom Premium Scrollbar & Selection */
         ::selection { background: var(--accent); color: #fff; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
 
         body {
             background: var(--bg);
-            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--text);
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* ---- SCROLL REVEAL ANIMATIONS ---- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        main {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-top: 76px;
         }
 
         /* ---- NAVBAR ---- */
         .navbar {
-            background: rgba(255,255,255,0.85);
+            background: rgba(250, 250, 247, 0.9);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0.8rem 0;
-            transition: all 0.4s var(--ease-out-expo);
             z-index: 1000;
         }
-
-        .navbar.scrolled {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            padding: 0.6rem 0;
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: -0.5px;
-            color: var(--text) !important;
-        }
-
-        .navbar-brand .accent-dot {
-            color: var(--accent-dark);
-        }
-
+        .navbar-brand { font-weight: 800; font-size: 1.3rem; color: var(--text) !important; }
+        .navbar-brand .accent-dot { color: var(--accent-dark); }
         .nav-link {
-            font-weight: 500;
-            font-size: 0.85rem;
-            color: var(--muted) !important;
-            letter-spacing: 0.3px;
-            margin: 0 0.3rem;
-            transition: all 0.3s var(--ease-out-expo);
-            position: relative;
+            font-weight: 500; font-size: 0.85rem; color: var(--muted) !important;
+            margin: 0 0.3rem; position: relative; cursor: pointer; transition: 0.3s;
         }
-
+        .nav-link:hover, .nav-link.active { color: var(--text) !important; }
         .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s var(--ease-out-expo);
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 0; height: 2px; background: var(--accent); transition: width 0.3s var(--ease-out-expo);
         }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 60%;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--text) !important;
-        }
-
+        .nav-link.active::after { width: 60%; }
         .nav-cta {
-            background: var(--accent-dark);
-            color: #fff !important;
-            border-radius: 2rem;
-            padding: 0.5rem 1.4rem !important;
-            font-weight: 600 !important;
-            transition: all 0.35s var(--ease-spring) !important;
+            background: var(--accent-dark); color: #fff !important;
+            border-radius: 2rem; padding: 0.5rem 1.4rem !important; font-weight: 600 !important;
+            transition: all 0.3s var(--ease-spring);
         }
+        .nav-cta:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 20px var(--accent-glow); }
 
-        .nav-cta:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px var(--accent-glow);
+        /* ---- TAB TRANSITIONS ---- */
+        .tab-section {
+            display: none;
+            min-height: calc(100vh - 76px);
         }
-
-        /* ---- SECTIONS ---- */
-        section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .section-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--accent-dark);
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .section-line {
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        /* ---- HERO ---- */
-        #home {
-            min-height: 100vh;
+        .tab-section.active {
             display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
+            flex-direction: column;
+            animation: tabFadeIn 0.65s var(--ease-out-expo) forwards;
         }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -15%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(200,169,126,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: heroFloat 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes heroFloat {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(20px, -20px); }
-            66% { transform: translate(-15px, 15px); }
-        }
-
-        .hero-text {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s var(--ease-out-expo) 0.2s forwards;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            animation: fadeInUp 1s var(--ease-out-expo) forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes fadeInUp {
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero-image-wrapper img {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            transition: transform 0.7s var(--ease-out-expo);
+        /* ---- GLOBAL SECTION STYLES ---- */
+        .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-dark); font-weight: 700; margin-bottom: 0.8rem; }
+        .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.1; }
+        .section-line { width: 60px; height: 3px; background: var(--accent); margin-bottom: 1.5rem; }
+
+        /* ---- HOME / HERO ---- */
+        #home {
+            justify-content: center; align-items: center;
+            overflow: hidden; position: relative;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--bg) 100%);
         }
 
-        .hero-image-wrapper:hover img {
-            transform: scale(1.04);
+        .motion-graphics-container {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw; height: 100vh;
+            z-index: 1; pointer-events: none;
+        }
+
+        /* -- Glowing Orb (parallax-aware) -- */
+        .glow-orb {
+            position: absolute; top: 50%; left: 50%;
+            width: 40vw; height: 40vw; max-width: 500px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(40px);
+            will-change: transform;
+            animation: pulseOrb 6s ease-in-out infinite alternate;
+        }
+        @keyframes pulseOrb {
+            from {
+                transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) scale(1);
+                opacity: 0.6;
+            }
+            to {
+                transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* -- Orbital Rings -- */
+        .ring {
+            position: absolute; top: 50%; left: 50%;
+            border-radius: 50%;
+            border: 1px solid rgba(200, 169, 126, 0.2);
+            will-change: transform;
+        }
+        .ring-1 {
+            width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+            border-style: dashed;
+            animation: spin 20s linear infinite;
+        }
+        .ring-2 {
+            width: 40vw; height: 40vw; max-width: 600px; max-height: 600px;
+            border-color: rgba(200, 169, 126, 0.4);
+            animation: spinReverse 15s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(0deg); }
+            to { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(360deg); }
+        }
+        @keyframes spinReverse {
+            from { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(0deg); }
+            to { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(-360deg); }
+        }
+
+        /* -- Neon Orbiting Dot -- */
+        .orbit {
+            position: absolute; top: 50%; left: 50%;
+            width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+            will-change: transform;
+            animation: orbitSpin 12s linear infinite;
+        }
+        @keyframes orbitSpin {
+            from { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(0deg); }
+            to { transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(360deg); }
+        }
+        .orbit-dot {
+            position: absolute;
+            top: -7px; left: 50%;
+            width: 14px; height: 14px;
+            margin-left: -7px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow:
+                0 0 6px 2px rgba(255, 255, 255, 0.95),
+                0 0 16px 6px var(--accent),
+                0 0 36px 14px var(--accent-glow);
+            animation: dotGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes dotGlow {
+            from { box-shadow: 0 0 6px 2px rgba(255,255,255,0.95), 0 0 16px 6px var(--accent), 0 0 36px 14px var(--accent-glow); }
+            to { box-shadow: 0 0 10px 3px rgba(255,255,255,1), 0 0 24px 10px var(--accent), 0 0 52px 20px var(--accent-glow); }
+        }
+
+        /* -- Hero Content -- */
+        .hero-center-content {
+            position: relative; z-index: 10;
+            text-align: center;
+            display: flex; flex-direction: column; align-items: center;
+            width: 100%;
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
             background: rgba(200,169,126,0.1);
             border: 1px solid rgba(200,169,126,0.3);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: var(--accent-dark);
-            font-weight: 600;
-            margin-bottom: 1.2rem;
+            padding: 0.4rem 1rem; border-radius: 2rem;
+            font-size: 0.75rem; letter-spacing: 2px;
+            color: var(--accent-dark); font-weight: 600;
+            margin-bottom: 1.5rem;
         }
-
-        .hero-badge .live-dot {
-            width: 8px;
-            height: 8px;
-            background: #4caf50;
-            border-radius: 50%;
-            animation: livePulse 2s ease-in-out infinite;
-        }
-
+        .live-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; animation: livePulse 2s infinite; }
         @keyframes livePulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.5); }
             50% { box-shadow: 0 0 0 10px rgba(76,175,80,0); }
         }
 
         .hero-name {
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1;
+            font-size: clamp(3rem, 7vw, 6rem); font-weight: 900;
+            letter-spacing: -3px; line-height: 1.1;
+            color: var(--text); margin-bottom: 1.5rem;
         }
-
         .hero-name .highlight {
             color: var(--accent-dark);
-            position: relative;
-            display: inline-block;
+            position: relative; display: inline-block;
+            animation: slideUpPop 1.2s var(--ease-spring) forwards;
+            opacity: 0; transform: translateY(30px) scale(0.9);
         }
+        @keyframes slideUpPop { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--muted); max-width: 600px;
+            margin: 0 auto 2rem; line-height: 1.6;
+        }
+        .hero-actions { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3.5rem; }
+
+        /* -- Skills Marquee -- */
+        .hero-skills-marquee {
+            position: relative;
+            width: 100%; max-width: 900px; overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .marquee-track { display: flex; gap: 1rem; width: max-content; animation: scrollMarquee 25s linear infinite; }
+        .hero-skills-marquee:hover .marquee-track { animation-play-state: paused; }
+        .skill-chip {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            padding: 0.6rem 1.2rem; border-radius: 2rem;
+            font-weight: 600; font-size: 0.85rem;
+            color: var(--text);
+            display: flex; align-items: center; gap: 0.5rem;
+            white-space: nowrap;
+        }
+        .skill-chip i { color: var(--accent-dark); }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 0.5rem)); } }
 
         /* ---- ABOUT ---- */
-        #about {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+        #about { background: var(--surface); }
+        .about-image-wrapper {
+            border-radius: 2rem; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            transition: transform 0.5s var(--ease-out-expo);
         }
-
+        .about-image-wrapper:hover { transform: translateY(-5px); }
+        .about-image-wrapper img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
         .about-stat {
-            text-align: center;
-            padding: 1.5rem;
+            text-align: center; padding: 1.75rem 1.5rem;
+            background: var(--bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s var(--ease-out-expo);
         }
+        .about-stat:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .about-stat h3 { font-size: 2rem; font-weight: 900; color: var(--accent-dark); margin-bottom: 0.2rem; }
+        .about-stat p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; margin: 0; }
 
-        .about-stat h3 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: var(--accent-dark);
-        }
-
-        .about-stat p {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--muted);
-            font-weight: 600;
-        }
-
-        /* ---- SKILLS ---- */
+        /* ---- SKILLS & PROJECTS ---- */
         .skill-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+            padding: 1.5rem; text-align: center;
+            transition: all 0.35s var(--ease-out-expo);
             height: 100%;
         }
-
         .skill-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 16px 40px rgba(0,0,0,0.06);
             border-color: var(--accent);
         }
-
         .skill-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 50px; height: 50px; border-radius: 12px;
             background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--accent-dark);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--accent-dark);
             margin: 0 auto 1rem;
             transition: all 0.35s var(--ease-spring);
         }
+        .skill-card:hover .skill-icon { background: var(--accent); color: #fff; transform: scale(1.1); }
 
-        .skill-card:hover .skill-icon {
-            background: var(--accent);
-            color: #fff;
-            transform: scale(1.1);
-        }
-
-        /* ---- PROJECTS ---- */
         .project-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 1.5rem;
             overflow: hidden;
-            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
+            transition: all 0.4s var(--ease-out-expo);
             height: 100%;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
-
         .project-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 24px 50px rgba(0,0,0,0.08);
             border-color: var(--accent);
         }
-
         .project-image {
-            height: 240px; /* Increased height slightly for better screenshot ratio */
+            height: 240px;
             background: linear-gradient(135deg, #f5f2ec, #e8e2d9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            position: relative; overflow: hidden;
         }
-
         .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top; /* Shows the top of the screenshots better */
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: top;
             transition: transform 0.7s var(--ease-out-expo);
         }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
+        .project-card:hover .project-image img { transform: scale(1.05); }
+        .placeholder-icon {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem; color: var(--accent-dark); z-index: 1;
         }
-
-        .project-image .placeholder-icon {
-            font-size: 3rem;
-            color: var(--accent-dark);
-            position: absolute;
-            z-index: 1;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s var(--ease-out-expo);
-            z-index: 2;
-        }
-
-        .project-card:hover .project-image::after {
-            transform: scaleX(1);
-        }
-
-        .project-body {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; /* Makes sure all cards in a row stretch to match height */
-        }
-
-        .project-body h4 {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-body p {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
-            flex-grow: 1; /* Pushes the tags and button to the bottom */
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1.2rem;
-        }
-
+        .project-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
         .project-tag {
             font-size: 0.7rem;
             background: var(--bg);
             padding: 0.3rem 0.7rem;
             border-radius: 1rem;
-            color: var(--muted);
-            font-weight: 500;
-            transition: all 0.3s var(--ease-out-expo);
+            color: var(--muted); font-weight: 500;
         }
-
-        .project-card:hover .project-tag {
-            background: rgba(200, 169, 126, 0.15);
-            color: var(--accent-dark);
-        }
-
         .btn-project {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--text);
-            color: #fff;
+            align-self: flex-start;
+            background: var(--text); color: #fff;
             padding: 0.6rem 1.3rem;
             border-radius: 2rem;
-            font-weight: 600;
-            font-size: 0.85rem;
+            font-weight: 600; font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.35s var(--ease-spring);
-            align-self: flex-start; /* Keeps button from stretching */
         }
-
         .btn-project:hover {
             background: var(--accent-dark);
             transform: translateY(-2px);
@@ -462,381 +350,325 @@
         #contact {
             background: var(--text);
             color: #fff;
+            justify-content: center;
         }
-
-        #contact .section-label {
-            color: var(--accent);
-        }
-
-        #contact .section-title {
-            color: #fff;
-        }
-
-        #contact .section-line {
-            background: var(--accent);
-        }
-
         .contact-link-large {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
+            display: inline-flex; align-items: center; gap: 0.6rem;
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.15);
             padding: 0.8rem 1.5rem;
             border-radius: 2.5rem;
-            color: #fff;
-            text-decoration: none;
+            color: #fff; text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
             transition: all 0.35s var(--ease-spring);
         }
-
         .contact-link-large:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
+            background: var(--accent); border-color: var(--accent);
             transform: translateY(-3px);
             box-shadow: 0 12px 30px var(--accent-glow);
         }
 
-        /* ---- FOOTER ---- */
+        /* ---- FOOTER (only shown on contact tab) ---- */
         footer {
             background: var(--text);
             border-top: 1px solid rgba(255,255,255,0.1);
             padding: 1.5rem 0;
             color: rgba(255,255,255,0.5);
             font-size: 0.8rem;
+            text-align: center;
+            display: none;
         }
+        body.show-footer footer { display: block; }
 
         /* ---- RESPONSIVE ---- */
         @media (max-width: 768px) {
-            section { padding: 4rem 0; }
-            .hero-image-wrapper { margin-top: 2rem; max-width: 300px; margin-left: auto; margin-right: auto; }
-            .project-image { height: 200px; }
+            .hero-name { letter-spacing: -1px; }
+            .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
+            .ring-1, .ring-2, .orbit { width: 90vw; height: 90vw; }
         }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
+<body>
 
-    <!-- NAVBAR -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#home">Bereket<span class="accent-dot">.</span></a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Toggle navigation">
-                <i class="fas fa-bars text-dark" aria-hidden="true"></i>
+            <a class="navbar-brand" href="#">Bereket<span class="accent-dot">.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+                <i class="fas fa-bars text-dark"></i>
             </button>
             <div class="collapse navbar-collapse" id="navLinks">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
-                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link nav-cta" href="#contact">Let's Talk</a></li>
+                    <li class="nav-item"><a class="nav-link active" data-target="home" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" data-target="about" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" data-target="skills" href="#">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" data-target="projects" href="#">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta ms-lg-3" data-target="contact" href="#">Let's Talk</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- HOME -->
-    <section id="home">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-7 hero-text">
-                    <div class="hero-badge">
-                        <span class="live-dot" aria-hidden="true"></span> Open to Opportunities
+    <main>
+
+        <!-- HOME -->
+        <section id="home" class="tab-section active">
+            <div class="motion-graphics-container">
+                <div class="glow-orb" id="parallax-orb"></div>
+                <div class="ring ring-1" id="parallax-ring1"></div>
+                <div class="ring ring-2" id="parallax-ring2"></div>
+                <div class="orbit" id="orbit">
+                    <div class="orbit-dot"></div>
+                </div>
+            </div>
+
+            <div class="container hero-center-content">
+                <div class="hero-badge">
+                    <span class="live-dot"></span> Open to Opportunities
+                </div>
+                <h1 class="hero-name">
+                    Hi, I'm<br><span class="highlight">Bereket Tadesse</span>
+                </h1>
+                <p class="hero-subtitle">
+                    I craft clean, conversion-focused web experiences that help businesses look premium and perform better.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-dark rounded-pill px-4 py-3 fw-semibold nav-link-btn" data-target="projects">
+                        <i class="fas fa-rocket me-2"></i>View My Work
+                    </button>
+                    <button class="btn btn-outline-dark rounded-pill px-4 py-3 fw-semibold nav-link-btn" data-target="contact">
+                        <i class="far fa-envelope me-2"></i>Get In Touch
+                    </button>
+                </div>
+
+                <div class="hero-skills-marquee">
+                    <div class="marquee-track">
+                        <div class="skill-chip"><i class="fab fa-html5"></i> HTML5</div>
+                        <div class="skill-chip"><i class="fab fa-css3-alt"></i> CSS3</div>
+                        <div class="skill-chip"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill-chip"><i class="fab fa-react"></i> React</div>
+                        <div class="skill-chip"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+                        <div class="skill-chip"><i class="fas fa-paint-brush"></i> UI/UX</div>
+                        <div class="skill-chip"><i class="fab fa-git-alt"></i> Git</div>
+
+                        <div class="skill-chip"><i class="fab fa-html5"></i> HTML5</div>
+                        <div class="skill-chip"><i class="fab fa-css3-alt"></i> CSS3</div>
+                        <div class="skill-chip"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="skill-chip"><i class="fab fa-react"></i> React</div>
+                        <div class="skill-chip"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+                        <div class="skill-chip"><i class="fas fa-paint-brush"></i> UI/UX</div>
+                        <div class="skill-chip"><i class="fab fa-git-alt"></i> Git</div>
                     </div>
-                    <h1 class="hero-name">
-                        Hi, I'm<br><span class="highlight">Bereket Tadesse</span>
-                    </h1>
-                    <p class="lead text-muted mt-3 mb-4" style="max-width: 500px; line-height: 1.7;">
-                        Computer Science graduate from Unity University. 
-                        I craft clean, conversion-focused web experiences that 
-                        help businesses look premium and perform better.
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="tab-section py-5 align-items-center">
+            <div class="container py-4">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5">
+                        <div class="about-image-wrapper">
+                            <img src="me.jpg" alt="Bereket Tadesse">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <span class="section-label">About Me</span>
+                        <h2 class="section-title">Education &<br>Background</h2>
+                        <div class="section-line"></div>
+                        <p class="text-muted mb-4" style="line-height: 1.8; font-size: 1.05rem;">
+                            I'm a Computer Science graduate from <strong>Unity University</strong>
+                            (Class of 2026) with a deep passion for frontend development. I focus on creating
+                            web experiences that are fast, accessible, and visually refined.
+                            <br><br>
+                            When I'm not coding, I'm exploring UI/UX trends and building projects that solve real problems. I believe a great website isn't just about looking good—it's about making the user feel at home instantly.
+                        </p>
+                        <div class="row g-3 mt-4">
+                            <div class="col-6">
+                                <div class="about-stat"><h3>B.Sc.</h3><p>CS Degree</p></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="about-stat"><h3>2026</h3><p>Graduation</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="tab-section py-5 align-items-center">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <span class="section-label">My Toolkit</span>
+                    <h2 class="section-title">Skills &<br>Technologies</h2>
+                    <div class="section-line mx-auto"></div>
+                    <p class="text-muted mx-auto" style="max-width: 560px; line-height: 1.7;">
+                        A focused toolkit I use daily to design and build clean, accessible, and modern web experiences.
                     </p>
-                    <div class="d-flex flex-wrap gap-2">
-                        <a href="#projects" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold">
-                            <i class="fas fa-rocket me-2" aria-hidden="true"></i>View My Work
-                        </a>
-                        <a href="#contact" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold">
-                            <i class="far fa-envelope me-2" aria-hidden="true"></i>Get In Touch
-                        </a>
-                    </div>
                 </div>
-                <div class="col-lg-5 text-center">
-                    <div class="hero-image-wrapper d-inline-block">
-                        <img src="me.jpg" alt="Bereket Tadesse" loading="eager">
-                    </div>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-html5"></i></div><h6 class="fw-bold mb-1">HTML5</h6><small class="text-muted">Semantic markup</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-css3-alt"></i></div><h6 class="fw-bold mb-1">CSS3</h6><small class="text-muted">Flexbox, Grid</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-js"></i></div><h6 class="fw-bold mb-1">JavaScript</h6><small class="text-muted">ES6+, APIs</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-react"></i></div><h6 class="fw-bold mb-1">React</h6><small class="text-muted">Components, Hooks</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-bootstrap"></i></div><h6 class="fw-bold mb-1">Bootstrap</h6><small class="text-muted">Responsive UI</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fas fa-paint-brush"></i></div><h6 class="fw-bold mb-1">UI/UX Design</h6><small class="text-muted">Wireframing</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fab fa-git-alt"></i></div><h6 class="fw-bold mb-1">Git</h6><small class="text-muted">Version control</small></div></div>
+                    <div class="col-6 col-md-4 col-lg-3"><div class="skill-card"><div class="skill-icon"><i class="fas fa-mobile-alt"></i></div><h6 class="fw-bold mb-1">Responsive</h6><small class="text-muted">Mobile-first</small></div></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
-            <div class="reveal">
-                <span class="section-label">About Me</span>
-                <h2 class="section-title">Education &<br>Background</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-lg-6 reveal">
-                    <p class="text-muted" style="line-height: 1.8;">
-                        I'm a Computer Science graduate from <strong>Unity University</strong> 
-                        (Class of 2026) with a passion for frontend development. I focus on creating 
-                        web experiences that are fast, accessible, and visually refined. When I'm not 
-                        coding, I'm exploring UI/UX trends and building projects that solve real problems.
-                    </p>
+        <!-- PROJECTS -->
+        <section id="projects" class="tab-section py-5 align-items-center">
+            <div class="container py-4">
+                <div class="text-center mb-5">
+                    <span class="section-label">My Work</span>
+                    <h2 class="section-title">Featured<br>Projects</h2>
+                    <div class="section-line mx-auto"></div>
                 </div>
-                <div class="col-lg-6 reveal" style="transition-delay: 0.2s;">
-                    <div class="row g-3">
-                        <div class="col-4">
-                            <div class="about-stat">
-                                <h3>B.Sc.</h3>
-                                <p>CS Degree</p>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="Flowguard.jpg" alt="FlowGuard" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
+                                <div class="placeholder-icon" style="display: none;"><i class="fas fa-shield-alt"></i></div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="about-stat">
-                                <h3>2026</h3>
-                                <p>Graduation</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="about-stat">
-                                <h3>3.0</h3>
-                                <p>GPA / 4.0</p>
+                            <div class="project-body">
+                                <h4 class="fw-bold">FlowGuard</h4>
+                                <p class="text-muted flex-grow-1">Every dollar has a job before you can waste it. FlowGuard helps you allocate your salary intentionally — enter your income, pick a plan (50/30/20, 60/20/20, or custom), and lock it in. No more "where did my money go?"</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Budgeting</span>
+                                </div>
+                                <a href="https://bereket-codes.github.io/FlowGuard/" target="_blank" class="btn-project"><i class="fas fa-external-link-alt me-1"></i> Launch Project</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="container">
-            <div class="reveal">
-                <span class="section-label">My Toolkit</span>
-                <h2 class="section-title">Skills &<br>Technologies</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="row g-3 mt-3">
-                <div class="col-6 col-md-4 col-lg-3 reveal">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-html5" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">HTML5</h6>
-                        <small class="text-muted">Semantic markup</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.1s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">CSS3</h6>
-                        <small class="text-muted">Flexbox, Grid, Animations</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.2s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-js" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">JavaScript</h6>
-                        <small class="text-muted">ES6+, DOM, APIs</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.3s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-react" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">React</h6>
-                        <small class="text-muted">Components, Hooks</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-bootstrap" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">Bootstrap</h6>
-                        <small class="text-muted">Responsive UI</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.1s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">UI/UX Design</h6>
-                        <small class="text-muted">Wireframing & Prototyping</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.2s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-git-alt" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">Git & GitHub</h6>
-                        <small class="text-muted">Version control</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.3s;">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
-                        <h6 class="fw-bold mb-1">Responsive</h6>
-                        <small class="text-muted">Mobile-first design</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-        <div class="container">
-            <div class="reveal">
-                <span class="section-label">My Work</span>
-                <h2 class="section-title">Featured<br>Projects</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="row g-4 mt-3">
-                <!-- FlowGuard -->
-                <div class="col-md-6 reveal">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="Flowguard.jpg" alt="FlowGuard Project Preview" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
-                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <h4>FlowGuard</h4>
-                            <p>Every dollar has a job before you can waste it. FlowGuard helps you allocate your salary intentionally — enter your income, pick a plan (50/30/20, 60/20/20, or custom), and lock it in. No more "where did my money go?"</p>
-                            <div class="project-tags">
-                                <span class="project-tag">HTML5</span>
-                                <span class="project-tag">CSS3</span>
-                                <span class="project-tag">JavaScript</span>
-                                <span class="project-tag">Budgeting Tool</span>
+                    <div class="col-md-6">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="Habeshacart.jpg" alt="HabeshaCart" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
+                                <div class="placeholder-icon" style="display: none;"><i class="fas fa-shopping-cart"></i></div>
                             </div>
-                            <a href="https://bereket-codes.github.io/FlowGuard/" target="_blank" rel="noopener" class="btn-project">
-                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Launch Project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- HabeshaCart -->
-                <div class="col-md-6 reveal" style="transition-delay: 0.15s;">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="Habeshacart.jpg" alt="HabeshaCart Project Preview" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
-                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shopping-cart" aria-hidden="true"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <h4>HabeshaCart</h4>
-                            <p>A mobile-first e-commerce interface featuring live cart state calculations and a simulated Telebirr digital wallet integration flow for seamless checkout experiences.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">HTML5</span>
-                                <span class="project-tag">CSS3</span>
-                                <span class="project-tag">JavaScript</span>
-                                <span class="project-tag">E-Commerce</span>
+                            <div class="project-body">
+                                <h4 class="fw-bold">HabeshaCart</h4>
+                                <p class="text-muted flex-grow-1">A mobile-first e-commerce interface featuring live cart state calculations and a simulated Telebirr digital wallet integration flow for seamless checkout experiences.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">E-Commerce</span>
+                                </div>
+                                <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" class="btn-project"><i class="fas fa-external-link-alt me-1"></i> Launch Project</a>
                             </div>
-                            <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" rel="noopener" class="btn-project">
-                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Launch Project
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container text-center reveal">
-            <span class="section-label">Get In Touch</span>
-            <h2 class="section-title">Let's Work<br>Together</h2>
-            <div class="section-line mx-auto"></div>
-            <p class="text-white-50 mb-4" style="max-width: 450px; margin-left: auto; margin-right: auto;">
-                I'm currently open to freelance projects, collaborations, and full-time opportunities. 
-                Let's build something great.
-            </p>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="https://github.com/bereket-codes" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-github" aria-hidden="true"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/bereket-tadesse-17bbb8415" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn
-                </a>
-                <a href="https://t.me/Bk_tad" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-telegram-plane" aria-hidden="true"></i> Telegram
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tadessebereket79@gmail.com" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="far fa-envelope" aria-hidden="true"></i> Email
-                </a>
+        <!-- CONTACT -->
+        <section id="contact" class="tab-section py-5 text-center">
+            <div class="container py-4 my-auto">
+                <span class="section-label" style="color: var(--accent);">Get In Touch</span>
+                <h2 class="section-title text-white">Let's Work<br>Together</h2>
+                <div class="section-line mx-auto" style="background: var(--accent);"></div>
+                <p class="text-white-50 mb-4 mx-auto" style="max-width: 450px;">
+                    I'm currently open to freelance projects, collaborations, and full-time opportunities. Let's build something great.
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="https://github.com/bereket-codes" target="_blank" class="contact-link-large"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/bereket-tadesse-17bbb8415" target="_blank" class="contact-link-large"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://t.me/Bk_tad" target="_blank" class="contact-link-large"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tadessebereket79@gmail.com" target="_blank" class="contact-link-large"><i class="far fa-envelope"></i> Email</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    <footer class="text-center">
-        <div class="container">
-            <p class="mb-0">&copy; 2024 Bereket Tadesse. Built with passion &amp; precision.</p>
-        </div>
-    </footer>
+        <footer>
+            <div class="container">
+                <p class="mb-0">&copy; 2024 Bereket Tadesse. Built with passion &amp; precision.</p>
+            </div>
+        </footer>
 
-    <!-- Bootstrap JS -->
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        // --- 1. TAB NAVIGATION ---
+        const navLinks = document.querySelectorAll('.nav-link, .nav-link-btn');
+        const sections = document.querySelectorAll('.tab-section');
+        const mainEl = document.querySelector('main');
+
+        function switchTab(targetId) {
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+            const targetSection = document.getElementById(targetId);
+            if (!targetSection) return;
+
+            targetSection.classList.add('active');
+
+            const activeNav = document.querySelector(`.navbar .nav-link[data-target="${targetId}"]`);
+            if (activeNav) activeNav.classList.add('active');
+
+            // Reset scroll instantly (the fade-in animation masks the transition)
+            mainEl.scrollTo(0, 0);
+
+            // Show footer only on the contact tab
+            document.body.classList.toggle('show-footer', targetId === 'contact');
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab(link.getAttribute('data-target'));
+
+                const navbarCollapse = document.getElementById('navLinks');
+                if (navbarCollapse.classList.contains('show')) {
+                    new bootstrap.Collapse(navbarCollapse).hide();
+                }
+            });
+        });
+
+        // --- 2. SMOOTH LERP PARALLAX ---
+        const orb = document.getElementById('parallax-orb');
+        const ring1 = document.getElementById('parallax-ring1');
+        const ring2 = document.getElementById('parallax-ring2');
+        const orbit = document.getElementById('orbit');
+
+        let targetX = 0, targetY = 0;
+        let currentX = 0, currentY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            if (!document.getElementById('home').classList.contains('active')) return;
+            targetX = (window.innerWidth / 2 - e.clientX) / 60;
+            targetY = (window.innerHeight / 2 - e.clientY) / 60;
+        });
+
+        function animateParallax() {
+            // Lerp towards target for premium smoothness
+            currentX += (targetX - currentX) * 0.06;
+            currentY += (targetY - currentY) * 0.06;
+
+            // Set CSS variables (used inside keyframes so they stack with spin/pulse)
+            if (orb) {
+                orb.style.setProperty('--px', `${currentX * 1.5}px`);
+                orb.style.setProperty('--py', `${currentY * 1.5}px`);
             }
-        });
+            if (ring1) {
+                ring1.style.setProperty('--px', `${-currentX}px`);
+                ring1.style.setProperty('--py', `${-currentY}px`);
+            }
+            if (ring2) {
+                ring2.style.setProperty('--px', `${currentX * 2}px`);
+                ring2.style.setProperty('--py', `${currentY * 2}px`);
+            }
+            if (orbit) {
+                orbit.style.setProperty('--px', `${currentX * 0.5}px`);
+                orbit.style.setProperty('--py', `${currentY * 0.5}px`);
+            }
 
-        // Smooth scroll for nav links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Active nav link update on scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Intersection Observer for Scroll Reveal Animations
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Stop observing once animated in
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.15, // Triggers when 15% of the element is visible
-            rootMargin: "0px 0px -50px 0px"
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
+            requestAnimationFrame(animateParallax);
+        }
+        animateParallax();
     </script>
 
 </body>
