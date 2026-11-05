@@ -26,6 +26,13 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* Custom Premium Scrollbar & Selection */
+        ::selection { background: var(--accent); color: #fff; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
@@ -37,6 +44,19 @@
             font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             color: var(--text);
             overflow-x: hidden;
+        }
+
+        /* ---- SCROLL REVEAL ANIMATIONS ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ---- NAVBAR ---- */
@@ -52,6 +72,7 @@
 
         .navbar.scrolled {
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 0.6rem 0;
         }
 
         .navbar-brand {
@@ -115,6 +136,7 @@
         /* ---- SECTIONS ---- */
         section {
             padding: 6rem 0;
+            position: relative;
         }
 
         .section-label {
@@ -167,6 +189,12 @@
             0%, 100% { transform: translate(0, 0); }
             33% { transform: translate(20px, -20px); }
             66% { transform: translate(-15px, 15px); }
+        }
+
+        .hero-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s var(--ease-out-expo) 0.2s forwards;
         }
 
         .hero-image-wrapper {
@@ -269,7 +297,7 @@
             border-radius: 1rem;
             padding: 1.5rem;
             text-align: center;
-            transition: all 0.35s var(--ease-out-expo);
+            transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
             height: 100%;
         }
 
@@ -305,8 +333,10 @@
             border: 1px solid var(--border);
             border-radius: 1.5rem;
             overflow: hidden;
-            transition: all 0.4s var(--ease-out-expo);
+            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
             height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -316,7 +346,7 @@
         }
 
         .project-image {
-            height: 220px;
+            height: 240px; /* Increased height slightly for better screenshot ratio */
             background: linear-gradient(135deg, #f5f2ec, #e8e2d9);
             display: flex;
             align-items: center;
@@ -330,6 +360,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top; /* Shows the top of the screenshots better */
             transition: transform 0.7s var(--ease-out-expo);
         }
 
@@ -364,6 +395,9 @@
 
         .project-body {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Makes sure all cards in a row stretch to match height */
         }
 
         .project-body h4 {
@@ -375,15 +409,16 @@
         .project-body p {
             font-size: 0.85rem;
             color: var(--muted);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             line-height: 1.6;
+            flex-grow: 1; /* Pushes the tags and button to the bottom */
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .project-tag {
@@ -393,6 +428,12 @@
             border-radius: 1rem;
             color: var(--muted);
             font-weight: 500;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .project-card:hover .project-tag {
+            background: rgba(200, 169, 126, 0.15);
+            color: var(--accent-dark);
         }
 
         .btn-project {
@@ -407,6 +448,7 @@
             font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.35s var(--ease-spring);
+            align-self: flex-start; /* Keeps button from stretching */
         }
 
         .btn-project:hover {
@@ -470,7 +512,7 @@
         @media (max-width: 768px) {
             section { padding: 4rem 0; }
             .hero-image-wrapper { margin-top: 2rem; max-width: 300px; margin-left: auto; margin-right: auto; }
-            .project-image { height: 180px; }
+            .project-image { height: 200px; }
         }
     </style>
 </head>
@@ -480,8 +522,8 @@
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">Bereket<span class="accent-dot">.</span></a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
-                <i class="fas fa-bars text-dark"></i>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Toggle navigation">
+                <i class="fas fa-bars text-dark" aria-hidden="true"></i>
             </button>
             <div class="collapse navbar-collapse" id="navLinks">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
@@ -499,9 +541,9 @@
     <section id="home">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-7">
+                <div class="col-lg-7 hero-text">
                     <div class="hero-badge">
-                        <span class="live-dot"></span> Open to Opportunities
+                        <span class="live-dot" aria-hidden="true"></span> Open to Opportunities
                     </div>
                     <h1 class="hero-name">
                         Hi, I'm<br><span class="highlight">Bereket Tadesse</span>
@@ -513,10 +555,10 @@
                     </p>
                     <div class="d-flex flex-wrap gap-2">
                         <a href="#projects" class="btn btn-dark rounded-pill px-4 py-2 fw-semibold">
-                            <i class="fas fa-rocket me-2"></i>View My Work
+                            <i class="fas fa-rocket me-2" aria-hidden="true"></i>View My Work
                         </a>
                         <a href="#contact" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold">
-                            <i class="far fa-envelope me-2"></i>Get In Touch
+                            <i class="far fa-envelope me-2" aria-hidden="true"></i>Get In Touch
                         </a>
                     </div>
                 </div>
@@ -532,11 +574,13 @@
     <!-- ABOUT -->
     <section id="about">
         <div class="container">
-            <span class="section-label">About Me</span>
-            <h2 class="section-title">Education &<br>Background</h2>
-            <div class="section-line"></div>
+            <div class="reveal">
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">Education &<br>Background</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="row mt-4">
-                <div class="col-lg-6">
+                <div class="col-lg-6 reveal">
                     <p class="text-muted" style="line-height: 1.8;">
                         I'm a Computer Science graduate from <strong>Unity University</strong> 
                         (Class of 2026) with a passion for frontend development. I focus on creating 
@@ -544,7 +588,7 @@
                         coding, I'm exploring UI/UX trends and building projects that solve real problems.
                     </p>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 reveal" style="transition-delay: 0.2s;">
                     <div class="row g-3">
                         <div class="col-4">
                             <div class="about-stat">
@@ -573,62 +617,64 @@
     <!-- SKILLS -->
     <section id="skills">
         <div class="container">
-            <span class="section-label">My Toolkit</span>
-            <h2 class="section-title">Skills &<br>Technologies</h2>
-            <div class="section-line"></div>
+            <div class="reveal">
+                <span class="section-label">My Toolkit</span>
+                <h2 class="section-title">Skills &<br>Technologies</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="row g-3 mt-3">
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                        <div class="skill-icon"><i class="fab fa-html5" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">HTML5</h6>
                         <small class="text-muted">Semantic markup</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.1s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                        <div class="skill-icon"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">CSS3</h6>
                         <small class="text-muted">Flexbox, Grid, Animations</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.2s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <div class="skill-icon"><i class="fab fa-js" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">JavaScript</h6>
                         <small class="text-muted">ES6+, DOM, APIs</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.3s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-react"></i></div>
+                        <div class="skill-icon"><i class="fab fa-react" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">React</h6>
                         <small class="text-muted">Components, Hooks</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
+                        <div class="skill-icon"><i class="fab fa-bootstrap" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">Bootstrap</h6>
                         <small class="text-muted">Responsive UI</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.1s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <div class="skill-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">UI/UX Design</h6>
                         <small class="text-muted">Wireframing & Prototyping</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.2s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                        <div class="skill-icon"><i class="fab fa-git-alt" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">Git & GitHub</h6>
                         <small class="text-muted">Version control</small>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3 reveal" style="transition-delay: 0.3s;">
                     <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="skill-icon"><i class="fas fa-mobile-alt" aria-hidden="true"></i></div>
                         <h6 class="fw-bold mb-1">Responsive</h6>
                         <small class="text-muted">Mobile-first design</small>
                     </div>
@@ -640,17 +686,18 @@
     <!-- PROJECTS -->
     <section id="projects" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
         <div class="container">
-            <span class="section-label">My Work</span>
-            <h2 class="section-title">Featured<br>Projects</h2>
-            <div class="section-line"></div>
+            <div class="reveal">
+                <span class="section-label">My Work</span>
+                <h2 class="section-title">Featured<br>Projects</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="row g-4 mt-3">
                 <!-- FlowGuard -->
-                <div class="col-md-6">
+                <div class="col-md-6 reveal">
                     <div class="project-card">
                         <div class="project-image">
-                            <!-- REPLACE THE SRC BELOW WITH YOUR FLOWGUARD IMAGE -->
-                            <img src="flowguard-preview.jpg" alt="FlowGuard Project Preview" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
-                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shield-alt"></i></div>
+                            <img src="Flowguard.jpg" alt="FlowGuard Project Preview" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
+                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
                         </div>
                         <div class="project-body">
                             <h4>FlowGuard</h4>
@@ -662,18 +709,17 @@
                                 <span class="project-tag">Budgeting Tool</span>
                             </div>
                             <a href="https://bereket-codes.github.io/FlowGuard/" target="_blank" rel="noopener" class="btn-project">
-                                <i class="fas fa-external-link-alt"></i> Launch Project
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Launch Project
                             </a>
                         </div>
                     </div>
                 </div>
                 <!-- HabeshaCart -->
-                <div class="col-md-6">
+                <div class="col-md-6 reveal" style="transition-delay: 0.15s;">
                     <div class="project-card">
                         <div class="project-image">
-                            <!-- REPLACE THE SRC BELOW WITH YOUR HABESHACART IMAGE -->
-                            <img src="habeshacart-preview.jpg" alt="HabeshaCart Project Preview" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
-                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shopping-cart"></i></div>
+                            <img src="Habeshacart.jpg" alt="HabeshaCart Project Preview" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.placeholder-icon').style.display='block';">
+                            <div class="placeholder-icon" style="display: none;"><i class="fas fa-shopping-cart" aria-hidden="true"></i></div>
                         </div>
                         <div class="project-body">
                             <h4>HabeshaCart</h4>
@@ -685,7 +731,7 @@
                                 <span class="project-tag">E-Commerce</span>
                             </div>
                             <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" rel="noopener" class="btn-project">
-                                <i class="fas fa-external-link-alt"></i> Launch Project
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Launch Project
                             </a>
                         </div>
                     </div>
@@ -696,7 +742,7 @@
 
     <!-- CONTACT -->
     <section id="contact">
-        <div class="container text-center">
+        <div class="container text-center reveal">
             <span class="section-label">Get In Touch</span>
             <h2 class="section-title">Let's Work<br>Together</h2>
             <div class="section-line mx-auto"></div>
@@ -706,16 +752,16 @@
             </p>
             <div class="d-flex flex-wrap justify-content-center gap-3">
                 <a href="https://github.com/bereket-codes" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-github"></i> GitHub
+                    <i class="fab fa-github" aria-hidden="true"></i> GitHub
                 </a>
                 <a href="https://www.linkedin.com/in/bereket-tadesse-17bbb8415" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn
                 </a>
                 <a href="https://t.me/Bk_tad" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="fab fa-telegram-plane"></i> Telegram
+                    <i class="fab fa-telegram-plane" aria-hidden="true"></i> Telegram
                 </a>
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tadessebereket79@gmail.com" target="_blank" rel="noopener" class="contact-link-large">
-                    <i class="far fa-envelope"></i> Email
+                    <i class="far fa-envelope" aria-hidden="true"></i> Email
                 </a>
             </div>
         </div>
@@ -772,6 +818,25 @@
                 }
             });
         });
+
+        // Intersection Observer for Scroll Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once animated in
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15, // Triggers when 15% of the element is visible
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 
 </body>
