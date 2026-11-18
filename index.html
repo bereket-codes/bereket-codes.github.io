@@ -4,21 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bereket Tadesse · Frontend Developer</title>
-<meta name="description" content="Frontend developer crafting clean, conversion-focused web experiences. Computer Science graduate, open to freelance and full-time work.">
+<meta name="description" content="Frontend developer in Addis Ababa building fast, accessible interfaces in HTML, CSS and JavaScript. Open to freelance and full-time roles.">
+<meta name="author" content="Bereket Tadesse">
 <meta name="theme-color" content="#fafaf7">
 <link rel="canonical" href="https://bereket-codes.github.io/">
 
 <!-- Social preview: drop a 1200x630 image named og.jpg next to this file -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bereket Tadesse · Frontend Developer">
-<meta property="og:description" content="Computer Science graduate building clean, fast, accessible web experiences. Open to freelance and full-time frontend roles.">
+<meta property="og:description" content="Frontend developer in Addis Ababa. I build fast, accessible interfaces in HTML, CSS and JavaScript.">
 <meta property="og:url" content="https://bereket-codes.github.io/">
 <meta property="og:image" content="https://bereket-codes.github.io/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bereket Tadesse · Frontend Developer">
-<meta name="twitter:description" content="Computer Science graduate building clean, fast, accessible web experiences.">
+<meta name="twitter:description" content="Frontend developer in Addis Ababa. Fast, accessible interfaces in HTML, CSS and JavaScript.">
 <meta name="twitter:image" content="https://bereket-codes.github.io/og.jpg">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23fafaf7'/><text x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='32' font-weight='800' text-anchor='middle' fill='%23b8925a'>B.</text></svg>">
@@ -29,7 +30,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Bereket Tadesse","jobTitle":"Frontend Developer","url":"https://bereket-codes.github.io/","knowsAbout":["HTML5","CSS3","JavaScript","React","Bootstrap","UI/UX Design"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Unity University"},"sameAs":["https://github.com/bereket-codes","https://www.linkedin.com/in/bereket-tadesse-17bbb8415","https://t.me/Bk_tad"]}
+{"@context":"https://schema.org","@type":"Person","name":"Bereket Tadesse","jobTitle":"Frontend Developer","url":"https://bereket-codes.github.io/","address":{"@type":"PostalAddress","addressLocality":"Addis Ababa","addressCountry":"ET"},"knowsAbout":["HTML5","CSS3","JavaScript","React","Bootstrap","UI/UX Design"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Unity University"},"sameAs":["https://github.com/bereket-codes","https://www.linkedin.com/in/bereket-tadesse-17bbb8415","https://t.me/Bk_tad"]}
 </script>
 
 <script>
@@ -123,7 +124,7 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 @keyframes goldShift{from{background-position:0% 50%}to{background-position:100% 50%}}
 .hero-subtitle{font-size:clamp(1rem,1.9vw,1.18rem);color:var(--muted);max-width:600px;margin:0 auto 2.1rem;line-height:1.65}
 
-.hero-actions{display:flex;gap:.85rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+.hero-actions{display:flex;gap:.85rem;justify-content:center;margin-bottom:1.15rem;flex-wrap:wrap}
 .btn-hero{display:inline-flex;align-items:center;gap:.6rem;border-radius:999px;padding:.85rem 1.65rem;font-weight:600;font-size:.92rem;font-family:inherit;border:1px solid transparent;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .35s var(--ease-soft),color .35s var(--ease-soft),border-color .35s var(--ease-soft),box-shadow .5s var(--ease-out-expo),transform .45s var(--ease-out-expo)}
 .btn-hero--solid{background:var(--text);color:#fff;box-shadow:0 20px 34px -24px rgba(26,26,26,.95)}
 .btn-hero--solid:hover{background:#000;color:#fff;box-shadow:0 26px 46px -22px rgba(26,26,26,.8)}
@@ -133,6 +134,12 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .btn-hero--ghost:hover{background:#fff;border-color:var(--accent);color:var(--text)}
 .btn-hero--ghost:hover i{transform:translate3d(0,-2px,0)}
 [data-magnetic]{will-change:transform}
+
+/* selected work strip — the work is one click from the hero */
+.hero-work{display:flex;align-items:center;justify-content:center;gap:.4rem 1.1rem;flex-wrap:wrap;margin:0 0 2.3rem;font-size:.82rem}
+.hero-work-label{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.hero-work a{color:var(--text);text-decoration:none;font-weight:600;padding-bottom:2px;border-bottom:1px solid rgba(138,102,52,.3);transition:color .35s var(--ease-soft),border-color .35s var(--ease-soft)}
+.hero-work a:hover,.hero-work a:focus-visible{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}
 
 .hero-marquee{position:relative;width:min(100%,880px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
@@ -165,7 +172,8 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .about-rail strong{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin-bottom:.15rem}
 .about-rail span{display:block;font-size:.94rem;line-height:1.55;color:var(--muted)}
 
-/* ============ CARDS ============ */
+/* ============ SKILLS ============ */
+.skills-group-label{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 .9rem}
 .card-surface{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);transition:transform .5s var(--ease-out-expo),border-color .45s var(--ease-soft),box-shadow .55s var(--ease-out-expo)}
 .card-surface::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),rgba(200,169,126,.18),transparent 68%);opacity:0;transition:opacity .5s var(--ease-soft)}
 .card-surface:hover::before{opacity:1}
@@ -176,6 +184,7 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .skill-name{font-weight:700;margin-bottom:.15rem;font-size:.92rem;position:relative;z-index:1}
 .skill-card small{color:var(--muted);font-size:.75rem;position:relative;z-index:1}
 
+/* ============ PROJECTS ============ */
 .project-card{height:100%;border-radius:1.4rem;display:flex;flex-direction:column;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translate3d(0,var(--lift,0px),0);transition:transform .45s var(--ease-out-expo),border-color .45s var(--ease-soft),box-shadow .55s var(--ease-out-expo)}
 .project-card:hover{--lift:-8px;border-color:rgba(200,169,126,.8);box-shadow:0 40px 70px -46px rgba(26,26,26,.85)}
 .project-image{position:relative;height:240px;overflow:hidden;background:linear-gradient(135deg,#f6f3ed,#e9e3da)}
@@ -189,15 +198,23 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .project-image.is-missing .placeholder-icon{display:block}
 .project-image.is-missing img{display:none}
 .project-body{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1;position:relative;z-index:1}
-.project-name{font-size:1.45rem;line-height:1.2;font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+.project-name{font-size:1.45rem;line-height:1.2;font-weight:800;letter-spacing:-.02em;margin-bottom:.45rem}
 .project-body p{color:var(--muted);line-height:1.65;font-size:.94rem}
-.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0 1.4rem}
+.project-specs{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:.9rem 0 0;padding:0;font-size:.75rem;font-weight:600;color:var(--accent-ink)}
+.project-specs li{position:relative;padding-left:.72rem}
+.project-specs li::before{content:'';position:absolute;left:0;top:.48em;width:4px;height:4px;border-radius:50%;background:var(--accent-dark)}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.95rem 0 1.35rem}
 .project-tag{font-size:.7rem;background:var(--bg);color:var(--muted);padding:.32rem .72rem;border-radius:999px;font-weight:500;border:1px solid transparent;transition:border-color .4s var(--ease-soft),color .4s var(--ease-soft)}
 .project-card:hover .project-tag{border-color:var(--border)}
-.btn-project{align-self:flex-start;display:inline-flex;align-items:center;gap:.45rem;background:var(--text);color:#fff;padding:.62rem 1.3rem;border-radius:999px;font-weight:600;font-size:.85rem;text-decoration:none;transition:background .35s var(--ease-soft),transform .5s var(--ease-spring),box-shadow .5s var(--ease-out-expo)}
+.project-links{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;margin-top:auto}
+.btn-project{display:inline-flex;align-items:center;gap:.45rem;background:var(--text);color:#fff;padding:.62rem 1.3rem;border-radius:999px;font-weight:600;font-size:.85rem;text-decoration:none;transition:background .35s var(--ease-soft),transform .5s var(--ease-spring),box-shadow .5s var(--ease-out-expo)}
 .btn-project i{transition:transform .5s var(--ease-spring)}
 .btn-project:hover{background:var(--accent-ink);color:#fff;transform:translate3d(0,-2px,0);box-shadow:0 16px 28px -18px rgba(138,102,52,1)}
 .btn-project:hover i{transform:translate3d(2px,-2px,0)}
+.link-project{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;color:var(--muted);text-decoration:none;transition:color .35s var(--ease-soft)}
+.link-project i{font-size:.92em;transition:transform .5s var(--ease-spring)}
+.link-project:hover{color:var(--text)}
+.link-project:hover i{transform:translate3d(0,-2px,0)}
 
 /* ============ CONTACT ============ */
 #contact{position:relative;overflow:hidden;background:linear-gradient(180deg,#212121 0%,var(--text) 60%);color:#fff}
@@ -233,11 +250,13 @@ body.show-footer footer{display:block}
 @media (max-width:767.98px){
 .hero-actions{flex-direction:column;align-items:stretch;width:100%;max-width:320px;margin-inline:auto}
 .btn-hero{justify-content:center}
+.hero-work{gap:.35rem .9rem;margin-bottom:2rem}
 .glow-orb{width:78vw;height:78vw}
 .aura,.ring-1,.orbit{width:92vw;height:92vw}
 .ring-2,.orbit-rev{width:64vw;height:64vw}
 .hero-marquee{max-width:100%}
 .about-quote{font-size:1rem}
+.project-image{height:200px}
 }
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
@@ -314,12 +333,18 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             </span>
         </h1>
 
-        <p class="hero-subtitle" data-hero style="--hd:620ms">I craft clean, conversion-focused web experiences that help businesses look premium and perform better.</p>
+        <p class="hero-subtitle" data-hero style="--hd:620ms">Frontend developer in Addis Ababa. I build fast, accessible interfaces in HTML, CSS and JavaScript — with an eye for the details that make a page feel finished.</p>
 
         <div class="hero-actions" data-hero style="--hd:740ms">
             <button class="btn-hero btn-hero--solid" data-magnetic data-target="projects"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View my work</button>
             <a class="btn-hero btn-hero--ghost" href="cv.pdf" download="Bereket-Tadesse-CV.pdf" data-magnetic><i class="fa-solid fa-download" aria-hidden="true"></i> Download CV</a>
         </div>
+
+        <p class="hero-work" data-hero style="--hd:790ms">
+            <span class="hero-work-label">Selected work</span>
+            <a href="#projects" data-target="projects">FlowGuard</a>
+            <a href="#projects" data-target="projects">HabeshaCart</a>
+        </p>
 
         <div class="hero-marquee" data-hero style="--hd:860ms">
             <div class="marquee-track">
@@ -352,9 +377,9 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
         <div class="row g-4 g-lg-5 align-items-stretch">
             <div class="col-lg-5">
                 <figure class="about-media media-frame" data-reveal style="--d:40ms">
-                    <img src="me.jpg" alt="Bereket Tadesse" width="800" height="1000" decoding="async" data-fallback>
+                    <img src="me.jpg" alt="Bereket Tadesse, frontend developer" width="800" height="1000" decoding="async" data-fallback>
                     <div class="media-fallback about-fallback"><span>BT</span></div>
-                    <figcaption class="about-caption">Unity University · Class of 2026</figcaption>
+                    <figcaption class="about-caption">Addis Ababa · Class of 2026</figcaption>
                 </figure>
             </div>
             <div class="col-lg-7">
@@ -386,17 +411,23 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             <p class="section-label" data-reveal>My toolkit</p>
             <h2 class="section-title" id="skills-title" data-heading tabindex="-1" data-reveal style="--d:80ms">Skills &amp;<br>Technologies</h2>
             <div class="section-line line-grow center mb-4" data-reveal style="--d:180ms"></div>
-            <p class="text-muted mx-auto" data-reveal style="--d:240ms;max-width:560px;line-height:1.75">A focused toolkit I use daily to design and build clean, accessible, and modern web experiences.</p>
+            <p class="text-muted mx-auto" data-reveal style="--d:240ms;max-width:560px;line-height:1.75">What I reach for every day — and what I'm still deepening.</p>
         </div>
-        <div class="row g-3 justify-content-center" data-stagger>
+
+        <p class="skills-group-label text-center" data-reveal>Core stack</p>
+        <div class="row g-3 justify-content-center mb-4" data-stagger>
             <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div><h3 class="skill-name">HTML5</h3><small>Semantic markup</small></div></div>
             <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></div><h3 class="skill-name">CSS3</h3><small>Flexbox, Grid</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-js" aria-hidden="true"></i></div><h3 class="skill-name">JavaScript</h3><small>ES6+, APIs</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-js" aria-hidden="true"></i></div><h3 class="skill-name">JavaScript</h3><small>ES6+, DOM, APIs</small></div></div>
             <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i></div><h3 class="skill-name">Bootstrap</h3><small>Responsive UI</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i></div><h3 class="skill-name">UI/UX design</h3><small>Wireframing</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Version control</small></div></div>
             <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div><h3 class="skill-name">Responsive</h3><small>Mobile-first</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Version control</small></div></div>
+        </div>
+
+        <p class="skills-group-label text-center" data-reveal>Working knowledge</p>
+        <div class="row g-3 justify-content-center" data-stagger>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i></div><h3 class="skill-name">UI/UX design</h3><small>Wireframing, layout</small></div></div>
         </div>
     </div>
 </section>
@@ -413,32 +444,47 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             <div class="col-md-6" data-reveal>
                 <article class="card-surface project-card" data-tilt="5">
                     <div class="project-image">
-                        <img src="Flowguard.jpg" alt="FlowGuard budgeting app interface" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
+                        <img src="Flowguard.jpg" alt="FlowGuard landing page with its three-step allocation flow" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
                         <div class="placeholder-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
                     </div>
                     <div class="project-body">
                         <h3 class="project-name">FlowGuard</h3>
-                        <p class="flex-grow-1">Every dollar has a job before you can waste it. FlowGuard helps you allocate your salary intentionally — enter your income, pick a plan (50/30/20, 60/20/20, or custom), and lock it in. No more "where did my money go?"</p>
+                        <p class="project-summary flex-grow-1">A paycheck allocator. Enter your income, choose 50/30/20, 60/20/20 or a custom split, lock the plan in, then revisit it as a dashboard that shows every dollar already assigned.</p>
+                        <ul class="project-specs">
+                            <li>3-step flow</li>
+                            <li>No account needed</li>
+                            <li>Data stays in the browser</li>
+                        </ul>
                         <div class="project-tags">
                             <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Budgeting</span>
                         </div>
-                        <a href="https://bereket-codes.github.io/FlowGuard/" target="_blank" rel="noopener noreferrer" class="btn-project">Launch project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <div class="project-links">
+                            <a href="https://bereket-codes.github.io/FlowGuard/" target="_blank" rel="noopener noreferrer" class="btn-project">Open FlowGuard <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                            <a href="https://github.com/bereket-codes/FlowGuard" target="_blank" rel="noopener noreferrer" class="link-project">View code <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </article>
             </div>
             <div class="col-md-6" data-reveal>
                 <article class="card-surface project-card" data-tilt="5">
                     <div class="project-image">
-                        <img src="Habeshacart.jpg" alt="HabeshaCart e-commerce interface" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
+                        <img src="Habeshacart.jpg" alt="HabeshaCart storefront showing six products priced in ETB" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
                         <div class="placeholder-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
                     </div>
                     <div class="project-body">
                         <h3 class="project-name">HabeshaCart</h3>
-                        <p class="flex-grow-1">A mobile-first e-commerce interface featuring live cart state calculations and a simulated Telebirr digital wallet integration flow for seamless checkout experiences.</p>
+                        <p class="project-summary flex-grow-1">A six-product storefront priced in ETB. Totals recalculate as items go in the cart, with subtotal and delivery broken out before a simulated Telebirr checkout.</p>
+                        <ul class="project-specs">
+                            <li>Live cart totals</li>
+                            <li>ETB pricing</li>
+                            <li>Telebirr flow</li>
+                        </ul>
                         <div class="project-tags">
                             <span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">E-commerce</span>
                         </div>
-                        <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" rel="noopener noreferrer" class="btn-project">Launch project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <div class="project-links">
+                            <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" rel="noopener noreferrer" class="btn-project">Open HabeshaCart <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </article>
             </div>
