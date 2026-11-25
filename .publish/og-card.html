@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Social preview card</title>
+<style>
+  html, body { margin: 0; padding: 0; }
+  .card { position: relative; width: 1200px; height: 630px; background: #fafaf7; font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif; color: #1a1a1a; overflow: hidden; }
+  .inner { position: absolute; inset: 0; padding: 84px 88px; display: flex; flex-direction: column; }
+  .rule { width: 84px; height: 5px; background: #c8a97e; border-radius: 3px; }
+  .name { margin-top: 34px; font-size: 82px; font-weight: 800; letter-spacing: -2.6px; line-height: 1.02; }
+  .role { margin-top: 20px; font-size: 33px; font-weight: 500; color: #6b6b6b; }
+  .role b { color: #8a6634; font-weight: 600; }
+  .divider { margin-top: 38px; height: 1px; background: #e8e3da; }
+  .projects { margin-top: 32px; display: flex; align-items: center; gap: 18px; font-size: 25px; font-weight: 600; color: #1a1a1a; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #c8a97e; }
+  .stack { margin-top: 16px; font-size: 21px; font-weight: 500; color: #6b6b6b; letter-spacing: .2px; }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; font-size: 23px; font-weight: 500; color: #6b6b6b; }
+  .url { color: #8a6634; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="inner">
+    <div class="rule"></div>
+    <div class="name">Bereket Tadesse</div>
+    <div class="role">Frontend Developer &nbsp;&middot;&nbsp; <b>React &amp; JavaScript</b></div>
+    <div class="divider"></div>
+    <div class="projects">
+      <span>Tactical Godfather</span><span class="dot"></span>
+      <span>FlowGuard</span><span class="dot"></span>
+      <span>HabeshaCart</span>
+    </div>
+    <div class="stack">React 19 &middot; @dnd-kit &middot; Framer Motion &middot; HTML5 &middot; CSS3 &middot; Git</div>
+    <div class="foot">
+      <span>Addis Ababa, Ethiopia</span>
+      <span class="url">bereket-codes.github.io</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
