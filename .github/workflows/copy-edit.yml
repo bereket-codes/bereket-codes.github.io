@@ -22,14 +22,15 @@ jobs:
           set -e
           git config user.name "Bereket Tadesse"
           git config user.email "tadessebereket779@gmail.com"
-          git add index.html portfolio.html
+          git add index.html
           git commit -m "Update hero and about copy; add full-stack direction"
           git push origin HEAD:main
 
       - name: Remove helpers
-        if: always()
         run: |
           set -e
+          git config user.name "Bereket Tadesse"
+          git config user.email "tadessebereket779@gmail.com"
           git rm -q .publish/patch.py
           git rm -q .github/workflows/copy-edit.yml
           git commit -m "chore: remove copy-edit helper"

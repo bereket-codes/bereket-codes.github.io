@@ -30,7 +30,7 @@ EDITS = [
 ]
 
 EXPECTED = "f5ca43e9558e8328bb1a22401fd154195acf9f34e2ee0f4d05eb30a1bd7950e3"
-FILES = ["index.html", "portfolio.html"]
+FILES = ["index.html"]
 
 for name in FILES:
     path = pathlib.Path(name)
