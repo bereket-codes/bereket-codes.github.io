@@ -41,23 +41,42 @@ jobs:
           set -euo pipefail
           mkdir -p .render
           chrome="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium-browser || command -v chromium || true)"
-          if [ -z "$chrome" ]; then echo "NO_CHROME"; ls /usr/bin | grep -i chrom || true; exit 1; fi
+          if [ -z "$chrome" ]; then echo "NO_CHROME"; exit 1; fi
           echo "using $chrome"
           "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
             --force-device-scale-factor=1 --window-size=1200,630 \
             --screenshot="$PWD/.render/og.png" "file://$PWD/.publish/og-card.html" 2> .render/chrome.log || true
-          cat .render/chrome.log | tail -20 || true
-          ls -l .render
-          identify .render/og.png
-          convert .render/og.png -resize 1200x630! -strip -quality 88 og.jpg
-          identify og.jpg
+          tail -3 .render/chrome.log || true
+          test -s .render/og.png
+          ls -l .render/og.png
+          if command -v ffmpeg >/dev/null 2>&1; then
+            echo "converting with ffmpeg"
+            ffmpeg -y -loglevel error -i .render/og.png -vf "scale=1200:630" -q:v 2 og.jpg
+          elif python3 -m venv .venv && .venv/bin/pip -q install --disable-pip-version-check pillow; then
+            echo "converting with pillow"
+            .venv/bin/python - <<'PY'
+          from PIL import Image
+          im = Image.open('.render/og.png').convert('RGB')
+          print('source', im.size)
+          if im.size != (1200, 630):
+              im = im.resize((1200, 630), Image.LANCZOS)
+          im.save('og.jpg', 'JPEG', quality=90, optimize=True, progressive=True)
+          print('wrote', Image.open('og.jpg').size)
+          PY
+          else
+            echo "converting with imagemagick"
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq imagemagick
+            convert .render/og.png -resize 1200x630! -strip -quality 88 og.jpg
+          fi
+          ls -l og.jpg
 
       - name: Commit and clean up
         run: |
           set -euo pipefail
           git config user.name "Bereket Tadesse"
           git config user.email "tadessebereket779@gmail.com"
-          rm -rf .publish .render .github/workflows/publish-portfolio.yml
+          rm -rf .publish .render .venv .github/workflows/publish-portfolio.yml
           git add -A
           git commit -m "Publish portfolio v2 and add social preview image"
           git push origin HEAD:main
