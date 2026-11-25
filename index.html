@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bereket Tadesse · Frontend Developer</title>
-<meta name="description" content="Frontend developer in Addis Ababa building fast, accessible interfaces in HTML, CSS and JavaScript. Open to freelance and full-time roles.">
+<meta name="description" content="Frontend developer in Addis Ababa building fast, accessible interfaces in HTML, CSS, JavaScript and React. Open to freelance and full-time roles.">
 <meta name="author" content="Bereket Tadesse">
 <meta name="theme-color" content="#fafaf7">
 <link rel="canonical" href="https://bereket-codes.github.io/">
@@ -12,14 +12,14 @@
 <!-- Social preview: drop a 1200x630 image named og.jpg next to this file -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bereket Tadesse · Frontend Developer">
-<meta property="og:description" content="Frontend developer in Addis Ababa. I build fast, accessible interfaces in HTML, CSS and JavaScript.">
+<meta property="og:description" content="Frontend developer in Addis Ababa. I build fast, accessible interfaces in HTML, CSS, JavaScript and React.">
 <meta property="og:url" content="https://bereket-codes.github.io/">
 <meta property="og:image" content="https://bereket-codes.github.io/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bereket Tadesse · Frontend Developer">
-<meta name="twitter:description" content="Frontend developer in Addis Ababa. Fast, accessible interfaces in HTML, CSS and JavaScript.">
+<meta name="twitter:description" content="Frontend developer in Addis Ababa. Fast, accessible interfaces in HTML, CSS, JavaScript and React.">
 <meta name="twitter:image" content="https://bereket-codes.github.io/og.jpg">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23fafaf7'/><text x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='32' font-weight='800' text-anchor='middle' fill='%23b8925a'>B.</text></svg>">
@@ -200,6 +200,12 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .project-body{padding:1.5rem;display:flex;flex-direction:column;flex-grow:1;position:relative;z-index:1}
 .project-name{font-size:1.45rem;line-height:1.2;font-weight:800;letter-spacing:-.02em;margin-bottom:.45rem}
 .project-body p{color:var(--muted);line-height:1.65;font-size:.94rem}
+.project-head{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem;margin-bottom:.55rem}
+.project-head .project-name{margin:0}
+.project-year{flex:none;font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.project-body .project-hard{margin:.8rem 0 0;font-size:.86rem;line-height:1.65}
+.project-body .project-hard b{color:var(--accent-ink);font-weight:700}
+.skills-note{font-size:.8rem;margin:0 auto;max-width:520px;line-height:1.6}
 .project-specs{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:.9rem 0 0;padding:0;font-size:.75rem;font-weight:600;color:var(--accent-ink)}
 .project-specs li{position:relative;padding-left:.72rem}
 .project-specs li::before{content:'';position:absolute;left:0;top:.48em;width:4px;height:4px;border-radius:50%;background:var(--accent-dark)}
@@ -333,7 +339,7 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             </span>
         </h1>
 
-        <p class="hero-subtitle" data-hero style="--hd:620ms">Frontend developer in Addis Ababa. I build fast, accessible interfaces in HTML, CSS and JavaScript — with an eye for the details that make a page feel finished.</p>
+        <p class="hero-subtitle" data-hero style="--hd:620ms">Frontend developer in Addis Ababa. I build React and vanilla-JavaScript interfaces that hold up outside the demo — accessible, responsive, and checked on a real phone before I call it done.</p>
 
         <div class="hero-actions" data-hero style="--hd:740ms">
             <button class="btn-hero btn-hero--solid" data-magnetic data-target="projects"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View my work</button>
@@ -342,8 +348,9 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
 
         <p class="hero-work" data-hero style="--hd:790ms">
             <span class="hero-work-label">Selected work</span>
-            <a href="#projects" data-target="projects">FlowGuard</a>
             <a href="#projects" data-target="projects">Tactical Godfather</a>
+            <a href="#projects" data-target="projects">FlowGuard</a>
+            <a href="#projects" data-target="projects">HabeshaCart</a>
         </p>
 
         <div class="hero-marquee" data-hero style="--hd:860ms">
@@ -394,9 +401,15 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                 <blockquote class="about-quote" data-reveal style="--d:360ms">
                     A great website isn't just about looking good — it's about making the user feel at home instantly.
                 </blockquote>
+                <p class="about-copy" data-reveal style="--d:400ms">
+                    I care most about the unglamorous parts: validating input before it reaches the screen, handling
+                    loading and error states so a page never looks broken, keeping the code small enough to reason
+                    about, and not shipping anything that leaks what it shouldn't. Every project here is deployed and
+                    clickable — I'd rather ship something small and finished than something large and half-working.
+                </p>
                 <ol class="about-rail" data-stagger>
                     <li data-reveal><strong>Degree</strong><span>B.Sc. Computer Science, Unity University · 2026</span></li>
-                    <li data-reveal><strong>Build</strong><span>FlowGuard, HabeshaCart and Tactical Godfather — designed, built and shipped</span></li>
+                    <li data-reveal><strong>Build</strong><span>Tactical Godfather, FlowGuard and HabeshaCart — designed, built and shipped</span></li>
                     <li data-reveal><strong>Now</strong><span>Open to freelance projects and full-time frontend roles</span></li>
                 </ol>
             </div>
@@ -416,19 +429,24 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
 
         <p class="skills-group-label text-center" data-reveal>Core stack</p>
         <div class="row g-3 justify-content-center mb-4" data-stagger>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div><h3 class="skill-name">HTML5</h3><small>Semantic markup</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></div><h3 class="skill-name">CSS3</h3><small>Flexbox, Grid</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks, state</small></div></div>
             <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-js" aria-hidden="true"></i></div><h3 class="skill-name">JavaScript</h3><small>ES6+, DOM, APIs</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i></div><h3 class="skill-name">Bootstrap</h3><small>Responsive UI</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div><h3 class="skill-name">Responsive</h3><small>Mobile-first</small></div></div>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Version control</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div><h3 class="skill-name">HTML5</h3><small>Semantic markup</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></div><h3 class="skill-name">CSS3</h3><small>Flexbox, Grid, motion</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div><h3 class="skill-name">Responsive</h3><small>Mobile-first layouts</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-universal-access" aria-hidden="true"></i></div><h3 class="skill-name">Accessibility</h3><small>Contrast, keyboard, focus</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Branching, version control</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div><h3 class="skill-name">GitHub Actions</h3><small>Build &amp; deploy CI</small></div></div>
         </div>
 
-        <p class="skills-group-label text-center" data-reveal>Working knowledge</p>
-        <div class="row g-3 justify-content-center" data-stagger>
-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i></div><h3 class="skill-name">UI/UX design</h3><small>Wireframing, layout</small></div></div>
+        <p class="skills-group-label text-center" data-reveal>Libraries &amp; design</p>
+        <div class="row g-3 justify-content-center mb-4" data-stagger>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-arrows-up-down-left-right" aria-hidden="true"></i></div><h3 class="skill-name">@dnd-kit</h3><small>Drag-and-drop, a11y-first</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div><h3 class="skill-name">Framer Motion</h3><small>Interface animation</small></div></div>
+            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i></div><h3 class="skill-name">UI/UX design</h3><small>Layout, type, spacing</small></div></div>
         </div>
+
+        <p class="skills-note text-center text-muted" data-reveal>Also comfortable with Bootstrap 5 — this page is built on it.</p>
     </div>
 </section>
 
@@ -441,15 +459,47 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             <div class="section-line line-grow center" data-reveal style="--d:180ms"></div>
         </div>
         <div class="row g-4" data-stagger>
-            <div class="col-md-6" data-reveal>
+            <div class="col-md-6 col-lg-4" data-reveal>
+                <article class="card-surface project-card" data-tilt="5">
+                    <div class="project-image">
+                        <img src="TacticalGodfather.jpg" alt="Tactical Godfather squad builder: a 4-3-3 pitch of player cards next to Sir Alex's verdict panel" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
+                        <div class="placeholder-icon"><i class="fa-solid fa-futbol" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-head">
+                            <h3 class="project-name">Tactical Godfather</h3>
+                            <span class="project-year">React SPA · Nov 2026</span>
+                        </div>
+                        <p class="project-summary flex-grow-1">A React 19 squad builder. Drag or click 17 players into a 4-3-3, 4-2-3-1 or 4-4-2, set tempo, line and pressing, then let Sir Alex rate the setup and name the weakest link.</p>
+                        <p class="project-hard"><b>Tricky bit:</b> deriving natural / adapted / out-of-position from the formation itself, instead of hardcoding each slot.</p>
+                        <ul class="project-specs">
+                            <li>17-player squad</li>
+                            <li>Drag or click to place</li>
+                            <li>Sir Alex's verdict</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span><span class="project-tag">@dnd-kit</span><span class="project-tag">Framer Motion</span><span class="project-tag">CSS3</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://bereket-codes.github.io/tactical-godfather/" target="_blank" rel="noopener noreferrer" class="btn-project">Open the app <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                            <a href="https://github.com/bereket-codes/tactical-godfather" target="_blank" rel="noopener noreferrer" class="link-project">View code <i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6 col-lg-4" data-reveal>
                 <article class="card-surface project-card" data-tilt="5">
                     <div class="project-image">
                         <img src="Flowguard.jpg" alt="FlowGuard landing page with its three-step allocation flow" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
                         <div class="placeholder-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
                     </div>
                     <div class="project-body">
-                        <h3 class="project-name">FlowGuard</h3>
+                        <div class="project-head">
+                            <h3 class="project-name">FlowGuard</h3>
+                            <span class="project-year">Jun 2026</span>
+                        </div>
                         <p class="project-summary flex-grow-1">A paycheck allocator. Enter your income, choose 50/30/20, 60/20/20 or a custom split, lock the plan in, then revisit it as a dashboard that shows every dollar already assigned.</p>
+                        <p class="project-hard"><b>Tricky bit:</b> keeping every category recalculating live without letting the totals drift.</p>
                         <ul class="project-specs">
                             <li>3-step flow</li>
                             <li>No account needed</li>
@@ -465,39 +515,19 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                     </div>
                 </article>
             </div>
-            <div class="col-md-6" data-reveal>
-                <article class="card-surface project-card" data-tilt="5">
-                    <div class="project-image">
-                        <img src="TacticalGodfather.jpg" alt="Tactical Godfather lineup builder with a full XI on the pitch" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
-                        <div class="placeholder-icon"><i class="fa-solid fa-futbol" aria-hidden="true"></i></div>
-                    </div>
-                    <div class="project-body">
-                        <h3 class="project-name">Tactical Godfather</h3>
-                        <p class="project-summary flex-grow-1">A football tactical board. Drag players into a 4-3-3, 4-2-3-1 or 4-4-2, set a role for each one, and let Sir Alex explain exactly how the shape gets beaten.</p>
-                        <ul class="project-specs">
-                            <li>17-player squad</li>
-                            <li>Best XI autofill</li>
-                            <li>Role instructions</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="project-tag">React</span><span class="project-tag">JavaScript</span><span class="project-tag">dnd-kit</span><span class="project-tag">Framer Motion</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://bereket-codes.github.io/tactical-godfather/" target="_blank" rel="noopener noreferrer" class="btn-project">Open Tactical Godfather <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-                            <a href="https://github.com/bereket-codes/tactical-godfather" target="_blank" rel="noopener noreferrer" class="link-project">View code <i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6" data-reveal>
+            <div class="col-md-6 col-lg-4" data-reveal>
                 <article class="card-surface project-card" data-tilt="5">
                     <div class="project-image">
                         <img src="Habeshacart.jpg" alt="HabeshaCart storefront showing six products priced in ETB" width="1200" height="800" loading="lazy" decoding="async" data-fallback>
                         <div class="placeholder-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
                     </div>
                     <div class="project-body">
-                        <h3 class="project-name">HabeshaCart</h3>
+                        <div class="project-head">
+                            <h3 class="project-name">HabeshaCart</h3>
+                            <span class="project-year">May 2026</span>
+                        </div>
                         <p class="project-summary flex-grow-1">A six-product storefront priced in ETB. Totals recalculate as items go in the cart, with subtotal and delivery broken out before a simulated Telebirr checkout.</p>
+                        <p class="project-hard"><b>Tricky bit:</b> keeping the subtotal, the free-delivery threshold and the grand total in step as quantities change.</p>
                         <ul class="project-specs">
                             <li>Live cart totals</li>
                             <li>ETB pricing</li>
@@ -508,6 +538,7 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                         </div>
                         <div class="project-links">
                             <a href="https://bereket-codes.github.io/habeshacart/" target="_blank" rel="noopener noreferrer" class="btn-project">Open HabeshaCart <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                            <a href="https://github.com/bereket-codes/bereket-codes.github.io/tree/main/habeshacart" target="_blank" rel="noopener noreferrer" class="link-project">View code <i class="fa-brands fa-github" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </article>
@@ -525,7 +556,7 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
         <p class="text-white-50 mb-4 mx-auto" data-reveal style="--d:240ms;max-width:460px;line-height:1.75">I'm currently open to freelance projects, collaborations, and full-time opportunities. Let's build something great.</p>
         <div class="d-flex flex-wrap justify-content-center gap-3" data-stagger>
             <a href="cv.pdf" download="Bereket-Tadesse-CV.pdf" class="contact-link-large contact-link-large--gold" data-reveal><i class="fa-solid fa-download" aria-hidden="true"></i> Download CV</a>
-            <a href="mailto:tadessebereket79@gmail.com" class="contact-link-large" data-reveal><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a>
+            <a href="mailto:tadessebereket779@gmail.com" class="contact-link-large" data-reveal><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a>
             <a href="https://github.com/bereket-codes" target="_blank" rel="noopener noreferrer" class="contact-link-large" data-reveal><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
             <a href="https://www.linkedin.com/in/bereket-tadesse-17bbb8415" target="_blank" rel="noopener noreferrer" class="contact-link-large" data-reveal><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
             <a href="https://t.me/Bk_tad" target="_blank" rel="noopener noreferrer" class="contact-link-large" data-reveal><i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram</a>
