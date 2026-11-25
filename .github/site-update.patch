@@ -1,0 +1,149 @@
+--- a/index.html
++++ b/index.html
+@@ -5,4 +5,4 @@
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+-<title>Bereket Tadesse · Frontend Developer</title>
+-<meta name="description" content="Frontend developer in Addis Ababa, going full-stack. I build fast, accessible interfaces in HTML, CSS, JavaScript and React. Open to freelance and full-time roles.">
++<title>Bereket Tadesse · Junior Full Stack Developer</title>
++<meta name="description" content="Junior full stack developer in Addis Ababa. I build fast, reliable, secure products with React, Next.js, Node and Express. Open to freelance, early-stage and full-time roles.">
+ <meta name="author" content="Bereket Tadesse">
+@@ -13,4 +13,4 @@
+ <meta property="og:type" content="website">
+-<meta property="og:title" content="Bereket Tadesse · Frontend Developer">
+-<meta property="og:description" content="Frontend developer in Addis Ababa, going full-stack. I build fast, accessible interfaces in HTML, CSS, JavaScript and React.">
++<meta property="og:title" content="Bereket Tadesse · Junior Full Stack Developer">
++<meta property="og:description" content="Junior full stack developer in Addis Ababa. I build fast, reliable, secure products with React, Next.js, Node and Express.">
+ <meta property="og:url" content="https://bereket-codes.github.io/">
+@@ -20,4 +20,4 @@
+ <meta name="twitter:card" content="summary_large_image">
+-<meta name="twitter:title" content="Bereket Tadesse · Frontend Developer">
+-<meta name="twitter:description" content="Frontend developer in Addis Ababa, going full-stack. Fast, accessible interfaces in HTML, CSS, JavaScript and React.">
++<meta name="twitter:title" content="Bereket Tadesse · Junior Full Stack Developer">
++<meta name="twitter:description" content="Junior full stack developer in Addis Ababa. Fast, reliable, secure products in React, Next.js, Node and Express.">
+ <meta name="twitter:image" content="https://bereket-codes.github.io/og.jpg">
+@@ -32,3 +32,3 @@
+ <script type="application/ld+json">
+-{"@context":"https://schema.org","@type":"Person","name":"Bereket Tadesse","jobTitle":"Frontend Developer","url":"https://bereket-codes.github.io/","address":{"@type":"PostalAddress","addressLocality":"Addis Ababa","addressCountry":"ET"},"knowsAbout":["HTML5","CSS3","JavaScript","React","Bootstrap","UI/UX Design"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Unity University"},"sameAs":["https://github.com/bereket-codes","https://www.linkedin.com/in/bereket-tadesse-17bbb8415","https://t.me/Bk_tad"]}
++{"@context":"https://schema.org","@type":"Person","name":"Bereket Tadesse","jobTitle":"Junior Full Stack Developer","url":"https://bereket-codes.github.io/","address":{"@type":"PostalAddress","addressLocality":"Addis Ababa","addressCountry":"ET"},"knowsAbout":["HTML5","CSS3","JavaScript","React","Next.js","Node.js","Express","SQL","Bootstrap","REST APIs"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Unity University"},"sameAs":["https://github.com/bereket-codes","https://www.linkedin.com/in/bereket-tadesse-17bbb8415","https://t.me/Bk_tad"]}
+ </script>
+@@ -166,2 +166,3 @@
+ .about-copy{color:var(--muted);line-height:1.8;font-size:1.02rem;max-width:56ch}
++.about-lead{font-size:1.28rem;font-weight:700;line-height:1.45;letter-spacing:-.01em;color:var(--text);margin:0 0 .9rem;max-width:56ch}
+ .about-quote{margin:1.7rem 0 0;padding:.15rem 0 .15rem 1.25rem;border-left:2px solid var(--accent);font-size:1.08rem;line-height:1.65;font-weight:500;color:var(--text);max-width:52ch}
+@@ -341,3 +342,3 @@
+ 
+-        <p class="hero-subtitle" data-hero style="--hd:620ms">Frontend developer in Addis Ababa, going full-stack. I build React and vanilla-JavaScript interfaces that hold up outside the demo.</p>
++        <p class="hero-subtitle" data-hero style="--hd:620ms">Junior full stack developer in Addis Ababa. React and Next.js on the front end, Node and Express on the server — products that hold up outside the demo.</p>
+ 
+@@ -362,4 +363,5 @@
+                     <span class="chip"><i class="fa-brands fa-react" aria-hidden="true"></i> React</span>
++                    <span class="chip"><i class="fa-brands fa-node-js" aria-hidden="true"></i> Node.js</span>
+                     <span class="chip"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i> Bootstrap</span>
+-                    <span class="chip"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i> UI/UX</span>
++                    <span class="chip"><i class="fa-solid fa-forward" aria-hidden="true"></i> Next.js</span>
+                     <span class="chip"><i class="fa-brands fa-git-alt" aria-hidden="true"></i> Git</span>
+@@ -371,4 +373,5 @@
+                     <span class="chip"><i class="fa-brands fa-react"></i> React</span>
++                    <span class="chip"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                     <span class="chip"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+-                    <span class="chip"><i class="fa-solid fa-paintbrush"></i> UI/UX</span>
++                    <span class="chip"><i class="fa-solid fa-forward"></i> Next.js</span>
+                     <span class="chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+@@ -383,6 +386,11 @@
+     <div class="container">
+-        <div class="row g-4 g-lg-5 align-items-stretch">
++        <div class="text-center mb-5">
++            <p class="section-label" data-reveal>About me</p>
++            <h2 class="section-title" id="about-title" data-heading tabindex="-1" data-reveal style="--d:80ms">How I<br>build</h2>
++            <div class="section-line line-grow center" data-reveal style="--d:180ms"></div>
++        </div>
++        <div class="row g-4 g-lg-5 align-items-start">
+             <div class="col-lg-5">
+                 <figure class="about-media media-frame" data-reveal style="--d:40ms">
+-                    <img src="me.jpg" alt="Bereket Tadesse, frontend developer" width="800" height="1000" decoding="async" data-fallback>
++                    <img src="me.jpg" alt="Bereket Tadesse, junior full stack developer" width="800" height="1000" decoding="async" data-fallback>
+                     <div class="media-fallback about-fallback"><span>BT</span></div>
+@@ -392,18 +400,13 @@
+             <div class="col-lg-7">
+-                <p class="section-label" data-reveal style="--d:80ms">About me</p>
+-                <h2 class="section-title" id="about-title" data-heading tabindex="-1" data-reveal style="--d:140ms">Education &amp;<br>Background</h2>
+-                <div class="section-line line-grow" data-reveal style="--d:220ms"></div>
++                <p class="about-lead" data-reveal style="--d:240ms">Hello, I'm Bereket.</p>
+                 <p class="about-copy" data-reveal style="--d:280ms">
+-                    I'm a Computer Science graduate from <strong>Unity University</strong> (Class of 2026) with a
+-                    deep focus on frontend development, and I'm now working toward full-stack, starting with HabeshaCart.
+-                    I build interfaces that are quick to load, work with a keyboard, and don't break when the content grows.
++                    I'm a <strong>junior full stack developer</strong> in Addis Ababa and a Computer Science graduate
++                    from <strong>Unity University</strong> (Class of 2026). I build with React and Next.js on the front
++                    end, Node and Express on the server, and SQL for the data.
+                 </p>
+-                <blockquote class="about-quote" data-reveal style="--d:360ms">
+-                    If a page needs explaining, the design isn't finished.
+-                </blockquote>
+                 <p class="about-copy" data-reveal style="--d:400ms">
+-                    Most of the work I care about is invisible: checking input before it reaches the screen, handling
+-                    loading and error states so a page never looks broken, and keeping the code small enough that I can
+-                    still explain it. Everything here is deployed and clickable. I'd rather finish something small than
+-                    half-finish something bigger.
++                    I'm still early in my career, so I keep things simple. I check what people type in before
++                    trusting it, keep passwords and API keys out of the browser, and write short code that is easy
++                    to read. I learn something new on every project, and what I enjoy most is the problem solving —
++                    taking something vague and working it down into something that works.
+                 </p>
+@@ -411,4 +414,5 @@
+                     <li data-reveal><strong>Degree</strong><span>B.Sc. Computer Science, Unity University · 2026</span></li>
+-                    <li data-reveal><strong>Build</strong><span>Tactical Godfather, FlowGuard and HabeshaCart — designed, built and shipped</span></li>
+-                    <li data-reveal><strong>Now</strong><span>Open to freelance projects and full-time work · frontend now, full-stack next</span></li>
++                    <li data-reveal><strong>Build</strong><span>Tactical Godfather, FlowGuard and HabeshaCart</span></li>
++                    <li data-reveal><strong>Focus</strong><span>Clean, maintainable code — no secrets left in the browser</span></li>
++                    <li data-reveal><strong>Now</strong><span>Junior full stack developer, open to freelance and full-time roles</span></li>
+                 </ol>
+@@ -429,22 +433,24 @@
+ 
+-        <p class="skills-group-label text-center" data-reveal>Core stack</p>
++        <p class="skills-group-label text-center" data-reveal>Frontend</p>
+         <div class="row g-3 justify-content-center mb-4" data-stagger>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks, state</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-js" aria-hidden="true"></i></div><h3 class="skill-name">JavaScript</h3><small>ES6+, DOM, APIs</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div><h3 class="skill-name">HTML5</h3><small>Semantic markup</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></div><h3 class="skill-name">CSS3</h3><small>Flexbox, Grid, motion</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div><h3 class="skill-name">Responsive</h3><small>Mobile-first layouts</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-universal-access" aria-hidden="true"></i></div><h3 class="skill-name">Accessibility</h3><small>Contrast, keyboard, focus</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Branching, version control</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div><h3 class="skill-name">GitHub Actions</h3><small>Build &amp; deploy CI</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div><h3 class="skill-name">React</h3><small>Components, hooks, state</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-forward" aria-hidden="true"></i></div><h3 class="skill-name">Next.js</h3><small>App Router, server rendering</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-js" aria-hidden="true"></i></div><h3 class="skill-name">JavaScript</h3><small>ES6+, DOM, APIs</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div><h3 class="skill-name">HTML5</h3><small>Semantic markup</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></div><h3 class="skill-name">CSS3</h3><small>Flexbox, Grid, motion</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i></div><h3 class="skill-name">Bootstrap 5</h3><small>Grid and components — this page runs on it</small></div></div>
+         </div>
+ 
+-        <p class="skills-group-label text-center" data-reveal>Libraries &amp; design</p>
++        <p class="skills-group-label text-center" data-reveal>Backend</p>
+         <div class="row g-3 justify-content-center mb-4" data-stagger>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-arrows-up-down-left-right" aria-hidden="true"></i></div><h3 class="skill-name">@dnd-kit</h3><small>Drag-and-drop, a11y-first</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div><h3 class="skill-name">Framer Motion</h3><small>Interface animation</small></div></div>
+-            <div class="col-6 col-md-4 col-lg-3" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-paintbrush" aria-hidden="true"></i></div><h3 class="skill-name">UI/UX design</h3><small>Layout, type, spacing</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-node-js" aria-hidden="true"></i></div><h3 class="skill-name">Node + Express</h3><small>APIs and middleware</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div><h3 class="skill-name">SQL</h3><small>Schemas, joins, transactions</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div><h3 class="skill-name">REST APIs</h3><small>Routes, JSON, status codes</small></div></div>
+         </div>
+ 
+-        <p class="skills-note text-center text-muted" data-reveal>Also comfortable with Bootstrap 5 — this page is built on it.</p>
++        <p class="skills-group-label text-center" data-reveal>Tools</p>
++        <div class="row g-3 justify-content-center" data-stagger>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-brands fa-git-alt" aria-hidden="true"></i></div><h3 class="skill-name">Git</h3><small>Branching, version control</small></div></div>
++            <div class="col-6 col-md-4" data-reveal><div class="card-surface skill-card" data-tilt="0"><div class="skill-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div><h3 class="skill-name">GitHub Actions</h3><small>Build &amp; deploy CI</small></div></div>
++        </div>
+     </div>
+@@ -555,3 +561,3 @@
+         <div class="section-line line-grow center" data-reveal style="--d:180ms"></div>
+-        <p class="text-white-50 mb-4 mx-auto" data-reveal style="--d:240ms;max-width:460px;line-height:1.75">Open to freelance work and full-time roles. Email is the fastest way to reach me.</p>
++        <p class="text-white-50 mb-4 mx-auto" data-reveal style="--d:240ms;max-width:460px;line-height:1.75">Open to freelance work, early-stage teams and full-time roles. Email is the fastest way to reach me.</p>
+         <div class="d-flex flex-wrap justify-content-center gap-3" data-stagger>
+@@ -586,3 +592,3 @@
+         TITLES = {
+-            home: 'Bereket Tadesse · Frontend Developer', about: 'About · Bereket Tadesse',
++            home: 'Bereket Tadesse · Junior Full Stack Developer', about: 'About · Bereket Tadesse',
+             skills: 'Skills · Bereket Tadesse', projects: 'Projects · Bereket Tadesse',
