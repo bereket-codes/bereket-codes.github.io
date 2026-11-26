@@ -1,0 +1,22 @@
+name: Apply portfolio about edit
+on:
+  push:
+    paths:
+      - '.apply-about.py'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply edit
+        run: python3 .apply-about.py
+      - name: Commit and clean up
+        run: |
+          git config user.name "Bereket Tadesse"
+          git config user.email "tadessebereket779@gmail.com"
+          git add index.html
+          git rm -q .apply-about.py .github/workflows/apply-about.yml
+          git commit -m "Add the greeting heading and tighten the About intro"
+          git push
