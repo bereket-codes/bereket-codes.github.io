@@ -74,14 +74,12 @@ main{flex:1 0 auto;display:flex;flex-direction:column}
 .nav-cta{background:var(--accent-ink);color:#fff!important;border-radius:999px;padding:.55rem 1.3rem!important;font-weight:600!important;transition:background .35s var(--ease-soft),transform .4s var(--ease-spring),box-shadow .4s var(--ease-out-expo)}
 .nav-cta:hover{background:#6f5127;transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(111,81,39,.95)}
 
-/* tabs — .active is JS-driven, :target is the no-JS fallback */
-.tab-section{display:none}
-.tab-section.active,.tab-section:target{display:flex;flex-direction:column;justify-content:center;min-height:calc(100svh - var(--nav-h));padding-block:clamp(2.5rem,7vh,5rem)}
-body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
-@supports not (view-transition-name:none){.tab-section.active{animation:tabIn .6s var(--ease-out-expo) both}}
-@keyframes tabIn{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
-::view-transition-old(root){animation-duration:.35s;animation-timing-function:var(--ease-soft)}
-::view-transition-new(root){animation-duration:.45s;animation-timing-function:var(--ease-out-expo)}
+/* one vertical page — every section sits on the same rhythm */
+html{scroll-behavior:smooth}
+.tab-section{display:flex;flex-direction:column;padding-block:clamp(4.25rem,7.5vw,6.5rem)}
+.tab-section .container{width:100%}
+section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
+#home{justify-content:center;min-height:calc(100svh - var(--nav-h));padding-block:clamp(2.75rem,6vw,4.5rem)}
 
 /* shared */
 .section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.32em;color:var(--accent-ink);font-weight:700;margin-bottom:.85rem}
@@ -151,26 +149,29 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 
 /* ============ ABOUT ============ */
 #about{background:var(--surface)}
-.about-media{display:flex;flex-direction:column;height:100%;min-height:clamp(380px,44vw,560px)}
+.about-wrap{max-width:960px}
+.about-media{display:flex;flex-direction:column;width:100%;max-width:390px;margin-inline:auto}
 .media-frame{position:relative;overflow:hidden;border-radius:1.6rem;background:linear-gradient(140deg,#f6f3ed,#e9e3da);box-shadow:0 34px 70px -46px rgba(26,26,26,.6);transition:transform .7s var(--ease-out-expo),box-shadow .7s var(--ease-out-expo)}
 .media-frame::after{content:'';position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(200,169,126,0);transition:border-color .6s var(--ease-soft);pointer-events:none;z-index:2}
 .media-frame:hover{transform:translate3d(0,-6px,0);box-shadow:0 44px 80px -46px rgba(26,26,26,.5)}
 .media-frame:hover::after{border-color:rgba(200,169,126,.55)}
-.about-media img{width:100%;flex:1 1 auto;min-height:0;object-fit:cover;object-position:center 22%;display:block}
+.about-media img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;display:block}
 .media-fallback{display:none}
-.about-fallback{align-items:center;justify-content:center;flex:1 1 auto;min-height:0;font-size:clamp(3rem,8vw,4.5rem);font-weight:900;letter-spacing:-.04em;color:var(--accent-dark);background:radial-gradient(circle at 50% 40%,rgba(200,169,126,.22),transparent 70%),linear-gradient(140deg,#f6f3ed,#e9e3da)}
+.about-fallback{align-items:center;justify-content:center;aspect-ratio:4/5;font-size:clamp(3rem,8vw,4.5rem);font-weight:900;letter-spacing:-.04em;color:var(--accent-dark);background:radial-gradient(circle at 50% 40%,rgba(200,169,126,.22),transparent 70%),linear-gradient(140deg,#f6f3ed,#e9e3da)}
 .media-frame.is-missing img{display:none}
 .media-frame.is-missing .media-fallback{display:flex}
 .about-caption{padding:.75rem 1.1rem;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--muted);background:rgba(255,255,255,.72);border-top:1px solid var(--border);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 
-.about-copy{color:var(--muted);line-height:1.8;font-size:1.02rem;max-width:56ch}
-.about-quote{margin:1.7rem 0 0;padding:.15rem 0 .15rem 1.25rem;border-left:2px solid var(--accent);font-size:1.08rem;line-height:1.65;font-weight:500;color:var(--text);max-width:52ch}
+.about-copy{color:var(--muted);line-height:1.75;font-size:.95rem;max-width:54ch}
+.about-copy + .about-copy{margin-top:.9rem}
+.about-copy strong{color:var(--text);font-weight:600}
+.about-quote{margin:1.55rem 0 0;padding:.1rem 0 .1rem 1.15rem;border-left:2px solid var(--accent);font-size:1rem;line-height:1.6;font-weight:500;color:var(--text);max-width:54ch}
 .about-rail{list-style:none;margin:1.9rem 0 0;padding:0 0 0 1.35rem;border-left:1px solid var(--border)}
 .about-rail li{position:relative;padding-bottom:1.15rem}
 .about-rail li:last-child{padding-bottom:0}
 .about-rail li::before{content:'';position:absolute;left:-1.35rem;top:.42rem;width:7px;height:7px;margin-left:-4px;border-radius:50%;background:var(--accent-ink);box-shadow:0 0 0 4px var(--surface)}
 .about-rail strong{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin-bottom:.15rem}
-.about-rail span{display:block;font-size:.94rem;line-height:1.55;color:var(--muted)}
+.about-rail span{display:block;font-size:.88rem;line-height:1.55;color:var(--muted)}
 
 /* ============ SKILLS ============ */
 .skills-group-label{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 .9rem}
@@ -223,7 +224,7 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .link-project:hover i{transform:translate3d(0,-2px,0)}
 
 /* ============ CONTACT ============ */
-#contact{position:relative;overflow:hidden;background:linear-gradient(180deg,#212121 0%,var(--text) 60%);color:#fff}
+#contact{position:relative;overflow:hidden;background:linear-gradient(180deg,#212121 0%,var(--text) 60%);color:#fff;justify-content:center;min-height:min(78svh,700px)}
 #contact::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(460px circle at var(--cx,50%) var(--cy,40%),rgba(200,169,126,.16),transparent 68%);opacity:0;transition:opacity .7s var(--ease-soft)}
 #contact:hover::before{opacity:1}
 #contact .section-label{color:var(--accent)}
@@ -236,8 +237,7 @@ body:has(.tab-section:target) .tab-section.active:not(:target){display:none}
 .contact-link-large--gold:hover{background:#6f5127;border-color:#6f5127}
 
 /* footer */
-footer{background:var(--text);border-top:1px solid rgba(255,255,255,.08);padding:1.4rem 0;color:rgba(255,255,255,.55);font-size:.78rem;text-align:center;display:none}
-body.show-footer footer{display:block}
+footer{background:var(--text);border-top:1px solid rgba(255,255,255,.08);padding:1.4rem 0;color:rgba(255,255,255,.55);font-size:.78rem;text-align:center}
 
 /* hero entrance */
 [data-hero]{opacity:0;transform:translate3d(0,22px,0);animation:heroUp .95s var(--ease-out-expo) forwards;animation-delay:var(--hd,0ms)}
@@ -249,14 +249,15 @@ body.show-footer footer{display:block}
 .nav-link{margin:.1rem 0}
 .nav-cta{margin-top:.5rem;text-align:center}
 .hero-name{letter-spacing:-.03em}
-.about-media{height:auto;min-height:0}
-.about-media img,.about-fallback{flex:0 0 auto;height:clamp(300px,62vw,420px);object-position:center 20%}
+.about-media{max-width:330px}
+.about-media img,.about-fallback{object-position:center 20%}
 .about-rail{margin-top:1.6rem}
 }
 @media (max-width:767.98px){
 .hero-actions{flex-direction:column;align-items:stretch;width:100%;max-width:320px;margin-inline:auto}
 .btn-hero{justify-content:center}
 .hero-work{gap:.35rem .9rem;margin-bottom:2rem}
+.hero-work-label{flex:0 0 100%;text-align:center;margin-bottom:.15rem}
 .glow-orb{width:78vw;height:78vw}
 .aura,.ring-1,.orbit{width:92vw;height:92vw}
 .ring-2,.orbit-rev{width:64vw;height:64vw}
@@ -295,18 +296,18 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
 
 <nav class="navbar navbar-expand-lg site-nav">
     <div class="container">
-        <a class="navbar-brand" href="#home" data-target="home">Bereket<span class="brand-dot">.</span></a>
+        <a class="navbar-brand" href="#home">Bereket<span class="brand-dot">.</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
         <div class="collapse navbar-collapse" id="navLinks">
             <ul class="navbar-nav ms-auto nav-list">
                 <li class="nav-indicator" aria-hidden="true"></li>
-                <li class="nav-item"><a class="nav-link active" href="#home" data-target="home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about" data-target="about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills" data-target="skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects" data-target="projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link nav-cta ms-lg-3" href="#contact" data-target="contact">Let's Talk</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link nav-cta ms-lg-3" href="#contact">Let's Talk</a></li>
             </ul>
         </div>
     </div>
@@ -315,7 +316,7 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
 <main id="main">
 
 <!-- HOME -->
-<section id="home" class="tab-section active" aria-labelledby="home-title">
+<section id="home" class="tab-section" aria-labelledby="home-title">
     <div class="motion-field" aria-hidden="true">
         <div class="layer" data-depth="16"><div class="glow-orb"></div></div>
         <div class="layer" data-depth="10"><div class="aura"></div></div>
@@ -339,18 +340,18 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             </span>
         </h1>
 
-        <p class="hero-subtitle" data-hero style="--hd:620ms">Junior full stack developer in Addis Ababa. React and Next.js on the front end, Node and Express on the server — products that hold up outside the demo.</p>
+        <p class="hero-subtitle" data-hero style="--hd:620ms">Junior full stack developer in Addis Ababa. React and Next.js on the front end, Node and Express on the server.</p>
 
         <div class="hero-actions" data-hero style="--hd:740ms">
-            <button class="btn-hero btn-hero--solid" data-magnetic data-target="projects"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View my work</button>
+            <a class="btn-hero btn-hero--solid" href="#projects" data-magnetic><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> View my work</a>
             <a class="btn-hero btn-hero--ghost" href="cv.pdf" download="Bereket-Tadesse-CV.pdf" data-magnetic><i class="fa-solid fa-download" aria-hidden="true"></i> Download CV</a>
         </div>
 
         <p class="hero-work" data-hero style="--hd:790ms">
             <span class="hero-work-label">Selected work</span>
-            <a href="#projects" data-target="projects">Tactical Godfather</a>
-            <a href="#projects" data-target="projects">FlowGuard</a>
-            <a href="#projects" data-target="projects">HabeshaCart</a>
+            <a href="#projects">Tactical Godfather</a>
+            <a href="#projects">FlowGuard</a>
+            <a href="#projects">HabeshaCart</a>
         </p>
 
         <div class="hero-marquee" data-hero style="--hd:860ms">
@@ -388,31 +389,32 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             <h2 class="section-title" id="about-title" data-heading tabindex="-1" data-reveal style="--d:80ms">Hello, I'm<br>Bereket</h2>
             <div class="section-line line-grow center" data-reveal style="--d:180ms"></div>
         </div>
-        <div class="row g-4 g-lg-5 align-items-start">
-            <div class="col-lg-5">
+        <div class="row g-4 g-lg-5 align-items-lg-center justify-content-center about-wrap mx-auto">
+            <div class="col-lg-4 col-md-6">
                 <figure class="about-media media-frame" data-reveal style="--d:40ms">
                     <img src="me.jpg" alt="Bereket Tadesse, junior full stack developer" width="800" height="1000" decoding="async" data-fallback>
                     <div class="media-fallback about-fallback"><span>BT</span></div>
                     <figcaption class="about-caption">Addis Ababa · Class of 2026</figcaption>
                 </figure>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-8 col-md-6">
                 <p class="about-copy" data-reveal style="--d:280ms">
-                    A <strong>junior full stack developer</strong> in Addis Ababa and a Computer Science graduate from
-                    <strong>Unity University</strong> (Class of 2026). I build with React and Next.js on the front end,
-                    Node and Express on the server, and SQL for the data.
+                    I'm a <strong>junior full stack developer</strong> in Addis Ababa and a Computer Science graduate
+                    from <strong>Unity University</strong>. React and Next.js on the front end, Node and Express on the
+                    server.
                 </p>
-                <p class="about-copy" data-reveal style="--d:400ms">
-                    I'm still early in my career, so I keep things simple. I check what people type in before
-                    trusting it, keep passwords and API keys out of the browser, and write short code that is easy
-                    to read. I learn something new on every project, and what I enjoy most is the problem solving —
-                    taking something vague and working it down into something that works.
+                <p class="about-copy" data-reveal style="--d:370ms">
+                    I like the part where something isn't working and I have to find out why. Most of what I know
+                    came from that: building a project, breaking it, and staying with it until it made sense.
                 </p>
+                <blockquote class="about-quote" data-reveal style="--d:460ms">
+                    I enjoy solving problems. I enjoy building things people actually use.
+                </blockquote>
                 <ol class="about-rail" data-stagger>
                     <li data-reveal><strong>Degree</strong><span>B.Sc. Computer Science, Unity University · 2026</span></li>
-                    <li data-reveal><strong>Build</strong><span>Tactical Godfather, FlowGuard and HabeshaCart</span></li>
-                    <li data-reveal><strong>Focus</strong><span>Clean, maintainable code — no secrets left in the browser</span></li>
-                    <li data-reveal><strong>Now</strong><span>Junior full stack developer, open to freelance and full-time roles</span></li>
+                    <li data-reveal><strong>Building</strong><span>Tactical Godfather, FlowGuard and HabeshaCart</span></li>
+                    <li data-reveal><strong>Good at</strong><span>Taking a vague idea and getting it to work</span></li>
+                    <li data-reveal><strong>Now</strong><span>Open to freelance and full-time roles</span></li>
                 </ol>
             </div>
         </div>
@@ -425,8 +427,8 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
         <div class="text-center mb-5">
             <p class="section-label" data-reveal>My toolkit</p>
             <h2 class="section-title" id="skills-title" data-heading tabindex="-1" data-reveal style="--d:80ms">Skills &amp;<br>Technologies</h2>
-            <div class="section-line line-grow center mb-4" data-reveal style="--d:180ms"></div>
-            <p class="text-muted mx-auto" data-reveal style="--d:240ms;max-width:560px;line-height:1.75">What I reach for every day — and what I'm still deepening.</p>
+            <div class="section-line line-grow center" data-reveal style="--d:180ms"></div>
+            <p class="text-muted mx-auto mb-0" data-reveal style="--d:240ms;max-width:560px;line-height:1.75">What I reach for every day — and what I'm still deepening.</p>
         </div>
 
         <p class="skills-group-label text-center" data-reveal>Frontend</p>
@@ -472,10 +474,9 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                     <div class="project-body">
                         <div class="project-head">
                             <h3 class="project-name">Tactical Godfather</h3>
-                            <span class="project-year">React SPA · Nov 2026</span>
+                            <span class="project-year">Nov 2026</span>
                         </div>
                         <p class="project-summary flex-grow-1">A React 19 squad builder. Drag or click 17 players into a 4-3-3, 4-2-3-1 or 4-4-2, set tempo, line and pressing, then let Sir Alex rate the setup and name the weakest link.</p>
-                        <p class="project-hard"><b>Tricky bit:</b> deriving natural / adapted / out-of-position from the formation itself, instead of hardcoding each slot.</p>
                         <ul class="project-specs">
                             <li>17-player squad</li>
                             <li>Drag or click to place</li>
@@ -503,7 +504,6 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                             <span class="project-year">Jun 2026</span>
                         </div>
                         <p class="project-summary flex-grow-1">A paycheck allocator. Enter your income, choose 50/30/20, 60/20/20 or a custom split, lock the plan in, then revisit it as a dashboard that shows every birr already assigned.</p>
-                        <p class="project-hard"><b>Tricky bit:</b> keeping every category recalculating live without letting the totals drift.</p>
                         <ul class="project-specs">
                             <li>3-step flow</li>
                             <li>No account needed</li>
@@ -531,7 +531,6 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
                             <span class="project-year">May 2026</span>
                         </div>
                         <p class="project-summary flex-grow-1">A six-product storefront priced in ETB. Totals recalculate as items go in the cart, with subtotal and delivery broken out before a simulated Telebirr checkout.</p>
-                        <p class="project-hard"><b>Tricky bit:</b> keeping the subtotal, the free-delivery threshold and the grand total in step as quantities change.</p>
                         <ul class="project-specs">
                             <li>Live cart totals</li>
                             <li>ETB pricing</li>
@@ -584,24 +583,13 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
         fine = window.matchMedia('(hover: hover) and (pointer: fine)'),
         isReduced = function () { return reduced.matches; };
 
-    /* tabs */
+    /* nav — one page: the underline follows the section in view */
     var sections = $$('.tab-section'), navLinks = $$('.nav-list .nav-link'),
-        navList = $('.nav-list'), ind = $('.nav-indicator'), cur = 'home',
-        TITLES = {
-            home: 'Bereket Tadesse · Junior Full Stack Developer', about: 'About · Bereket Tadesse',
-            skills: 'Skills · Bereket Tadesse', projects: 'Projects · Bereket Tadesse',
-            contact: 'Contact · Bereket Tadesse'
-        };
+        navList = $('.nav-list'), ind = $('.nav-indicator'), cur = 'home';
 
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
-    function sectionFromHash() {
-        var id = location.hash.slice(1), el = id && document.getElementById(id);
-        return el && el.classList.contains('tab-section') ? el : null;
-    }
-    function hashId() { var el = sectionFromHash(); return el ? el.id : 'home'; }
+    function targetOf(a) { return (a.getAttribute('href') || '').replace(/^#/, ''); }
     function linkFor(id) {
-        return navLinks.filter(function (a) { return a.dataset.target === id; })[0] || null;
+        return navLinks.filter(function (a) { return targetOf(a) === id; })[0] || null;
     }
     function moveIndicator(a) {
         if (!ind || !navList) return;
@@ -612,37 +600,26 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
         ind.style.opacity = '1';
     }
     function setActive(id) {
-        sections.forEach(function (s) { s.classList.toggle('active', s.id === id); });
-        navLinks.forEach(function (a) {
-            var on = a.dataset.target === id;
-            a.classList.toggle('active', on);
-            if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
-        });
-        document.title = TITLES[id] || document.title;
-        document.body.classList.toggle('show-footer', id === 'contact');
         cur = id;
+        navLinks.forEach(function (a) {
+            var on = targetOf(a) === id;
+            a.classList.toggle('active', on);
+            if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
         moveIndicator(linkFor(id));
     }
-    function commit(id, focus) {
-        setActive(id);
-        window.scrollTo(0, 0);
-        observeReveals(document.getElementById(id));
-        if (focus) {
-            var h = $('[data-heading]', document.getElementById(id));
-            if (h) h.focus({ preventScroll: true });
-        }
-    }
-    function go(id, push) {
-        if (!document.getElementById(id) || id === cur) return;
-        if (push) history.pushState({ tab: id }, '', '#' + id);
-        if (!isReduced() && document.startViewTransition) document.startViewTransition(function () { commit(id, true); });
-        else commit(id, true);
+    setActive('home');
+    $('#year').textContent = new Date().getFullYear();
+
+    if ('IntersectionObserver' in window) {
+        var spy = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        sections.forEach(function (s) { spy.observe(s); });
     }
 
-    $$('[data-target]').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            if (el.tagName === 'A') e.preventDefault();
-            go(el.dataset.target, true);
+    navLinks.forEach(function (a) {
+        a.addEventListener('click', function () {
             var c = document.getElementById('navLinks');
             if (c && c.classList.contains('show') && window.bootstrap) {
                 var inst = bootstrap.Collapse.getInstance(c);
@@ -650,13 +627,6 @@ a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555;fo
             }
         });
     });
-    window.addEventListener('popstate', function () { go(hashId(), false); });
-    window.addEventListener('hashchange', function () {
-        var id = hashId();
-        if (id !== cur && sectionFromHash()) go(id, false);
-    });
-    setActive(hashId());
-    $('#year').textContent = new Date().getFullYear();
 
     /* reveals */
     var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
